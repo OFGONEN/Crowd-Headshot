@@ -26,6 +26,11 @@ public class CameraController : MonoBehaviour
     {
 		_camera.fieldOfView = value;
 	}
+
+    public void OnCameraRotateChange( Vector2 value )
+    {
+		transform.localEulerAngles = value;
+	}
 #endregion
 
 #region Implementation
