@@ -457,6 +457,11 @@ namespace FFStudio
 		{
 			return Mathf.Clamp( value, vector.x, vector.y );
 		}
+
+		public static Vector2 Invert( this Vector2 vector )
+		{
+			return new Vector2( vector.y, vector.x );
+		}
 	}
 }
 
