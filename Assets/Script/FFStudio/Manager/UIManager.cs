@@ -30,6 +30,7 @@ namespace FFStudio
         public GameEvent levelRevealedEvent;
         public GameEvent loadNewLevelEvent;
         public GameEvent resetLevelEvent;
+        public GameEvent event_level_started;
         public ElephantLevelEvent elephantLevelEvent;
 #endregion
 
@@ -136,7 +137,11 @@ namespace FFStudio
 			foreGroundImage.DOFade( 0, GameSettings.Instance.ui_Entity_Fade_TweenDuration );
 
 			level_information_text_Scale.DoScale_Target( Vector3.zero, GameSettings.Instance.ui_Entity_Scale_TweenDuration );
-			level_information_text_Scale.Subscribe_OnComplete( levelRevealedEvent.Raise );
+			level_information_text_Scale.Subscribe_OnComplete( () => 
+            {
+				levelRevealedEvent.Raise();
+				event_level_started.Raise();
+			} );
 
 			tutorialObjects.gameObject.SetActive( false );
 
