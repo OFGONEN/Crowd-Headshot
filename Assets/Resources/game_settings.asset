@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: game_settings
   m_EditorClassIdentifier: 
   camera_zoom_in: 2.8
+  camera_zoom_out: 2.8
   camera_zoom_speed: 2.8
+  camera_zoom_ease: 1
   camera_rotation_speed: 1
   camera_rotation_clamp_horizontal: {x: -30, y: 30}
   camera_rotation_clamp_vertical: {x: -30, y: 30}

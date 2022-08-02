@@ -13,7 +13,9 @@ namespace FFStudio
     
     [ Title( "Camera" ) ]
         [ LabelText( "Zoom In Value" ) ] public float camera_zoom_in = 2.8f;
+        [ LabelText( "Zoom Out Value" ) ] public float camera_zoom_out = 2.8f;
         [ LabelText( "Zoom Speed" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_zoom_speed = 2.8f;
+        [ LabelText( "Zoom Ease" ) ] public Ease camera_zoom_ease;
         [ LabelText( "Rotation Speed" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_rotation_speed = 1f;
         [ LabelText( "Rotation Clamp Horizontal" ) ] public Vector2 camera_rotation_clamp_horizontal;
         [ LabelText( "Rotation Clamp Vertical" ) ] public Vector2 camera_rotation_clamp_vertical;
