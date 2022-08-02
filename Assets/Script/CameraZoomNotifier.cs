@@ -37,6 +37,18 @@ public class CameraZoomNotifier : SharedFloatNotifier
             .SetEase( GameSettings.Instance.camera_zoom_ease )
         );
     }
+
+    public float CurrentDuration_ZoomIn()
+    {
+		var distance = Mathf.Abs( sharedValue - GameSettings.Instance.camera_zoom_in );
+		return distance / GameSettings.Instance.camera_zoom_speed;
+	}
+
+	public float CurrentDuration_ZoomOut()
+	{
+		var distance = Mathf.Abs( sharedValue - GameSettings.Instance.camera_zoom_out );
+		return distance / GameSettings.Instance.camera_zoom_speed;
+	}
 #endregion
 
 #region Implementation
