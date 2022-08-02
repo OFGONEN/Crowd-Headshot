@@ -16,7 +16,7 @@ MonoBehaviour:
   camera_zoom_out: 60
   camera_zoom_speed: 30
   camera_zoom_ease: 1
-  camera_rotation_speed: 0.1
+  camera_rotation_speed: 30
   camera_rotation_duration: 0.75
   camera_rotation_clamp_horizontal: {x: -30, y: 30}
   camera_rotation_clamp_vertical: {x: -30, y: 30}

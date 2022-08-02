@@ -87,8 +87,9 @@ public class PlayerController : MonoBehaviour
 
     void FingerDrag( Vector2 value )
     {
-		// var input = value.Invert(); // Vertical input affects X rotation axis & Horizontal input affetcs Y rotation axis
-		// notif_camera_rotation.OnFingerDrag( value * GameSettings.Instance.camera_rotation_speed * Time.deltaTime );
+
+		var input = new Vector2( -value.y, value.x );
+		notif_camera_rotation.OnFingerDrag( input * GameSettings.Instance.camera_rotation_speed * Time.deltaTime );
 	}
 
     void OnZoomedIn()
