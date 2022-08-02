@@ -13,6 +13,8 @@ public class CameraController : MonoBehaviour
 #region Fields
   [ Title( "Components" ) ]
     [ SerializeField ] Camera _camera;
+
+    RecycledTween recycledTween = new RecycledTween();
 #endregion
 
 #region Properties
@@ -31,6 +33,15 @@ public class CameraController : MonoBehaviour
     {
 		transform.localEulerAngles = value;
 	}
+
+    public void OnDefaultRotation()
+    {
+		recycledTween.Recycle( transform.DOLocalRotate( 
+            GameSettings.Instance.camera_rotation_default, 
+            GameSettings.Instance.camera_rotation_speed
+            ).SetSpeedBased() 
+        );
+    }
 #endregion
 
 #region Implementation
