@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a385bd3b4416492409284c9a366cb52a, type: 3}
   m_Name: game_settings
   m_EditorClassIdentifier: 
+  camera_zoom_in: 2.8
+  camera_zoom_speed: 2.8
+  camera_rotation_speed: 1
+  camera_rotation_default: {x: 0, y: 0, z: 0}
   camera_follow_speed_depth: 2.8
   maxLevelCount: 1
   useRemoteConfig_GameSettings: 0

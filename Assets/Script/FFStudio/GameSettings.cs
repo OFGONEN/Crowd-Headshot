@@ -12,6 +12,10 @@ namespace FFStudio
     // Info: You can use Title() attribute ONCE for every game-specific group of settings.
     
     [ Title( "Camera" ) ]
+        [ LabelText( "Zoom In Value" ) ] public float camera_zoom_in = 2.8f;
+        [ LabelText( "Zoom Speed" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_zoom_speed = 2.8f;
+        [ LabelText( "Rotation Speed" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_rotation_speed = 1f;
+        [ LabelText( "Default Rotation" ) ] public Vector3 camera_rotation_default;
         [ LabelText( "Follow Speed (Z)" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_follow_speed_depth = 2.8f;
     
     [ Title( "Project Setup", "These settings should not be edited by Level Designer(s).", TitleAlignments.Centered ) ]
