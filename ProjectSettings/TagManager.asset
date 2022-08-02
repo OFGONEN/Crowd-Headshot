@@ -34,10 +34,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Boss_Combat
+  - Enemy_Combat
+  - Player_Combat
   m_SortingLayers:
   - name: Default
     uniqueID: 0
