@@ -17,6 +17,7 @@ namespace FFStudio
         [ LabelText( "Zoom Speed" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_zoom_speed = 2.8f;
         [ LabelText( "Zoom Ease" ) ] public Ease camera_zoom_ease;
         [ LabelText( "Rotation Speed" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_rotation_speed = 1f;
+        [ LabelText( "Rotation Default Duration" ) ] public float camera_rotation_duration = 1f;
         [ LabelText( "Rotation Clamp Horizontal" ) ] public Vector2 camera_rotation_clamp_horizontal;
         [ LabelText( "Rotation Clamp Vertical" ) ] public Vector2 camera_rotation_clamp_vertical;
         [ LabelText( "Default Rotation" ) ] public Vector3 camera_rotation_default;
