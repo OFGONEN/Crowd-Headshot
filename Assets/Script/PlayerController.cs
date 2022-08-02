@@ -4,14 +4,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FFStudio;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 
 public class PlayerController : MonoBehaviour
 {
 #region Fields
+  [ Title( "Shared Variables" ) ]
+    [ SerializeField ] CameraRotationNotifier notif_camera_rotation;
+    [ SerializeField ] CameraZoomNotifier notif_camera_zoom;
+    [ SerializeField ] SharedReferenceNotifier notif_camera_reference;
+
+    Transform camera_transform;
+
     UnityMessage onFingerUp;
     UnityMessage onFingerDown;
     Vector2Delegate onFingerDrag;
+
+    RecycledSequence recycledSequence = new RecycledSequence();
 #endregion
 
 #region Properties
@@ -27,6 +37,7 @@ public class PlayerController : MonoBehaviour
 #region API
     public void OnLevelStart()
     {
+		camera_transform = notif_camera_reference.sharedValue as Transform;
 		onFingerDown = FingerDown;
 	}
 
@@ -47,29 +58,48 @@ public class PlayerController : MonoBehaviour
 
     public void OnFingerDrag( Vector2GameEvent gameEvent )
     {
-		var input = gameEvent.eventValue.Invert(); // Vertical input affects X rotation axis & Horizontal input affetcs Y rotation axis
-		onFingerDrag( input );
+		onFingerDrag( gameEvent.eventValue );
 	}
 #endregion
 
 #region Implementation
     void FingerUp()
     {
-		onFingerUp   = ExtensionMethods.EmptyMethod;
-		onFingerDown = FingerDown;
-		onFingerDrag = ExtensionMethods.EmptyMethod;
-    }
+		EmptyDelegates();
+
+		var sequence = recycledSequence.Recycle( OnZoomedOut );
+		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
+		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
+		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
+	}
 
 	void FingerDown()
 	{
+        // Handle delegates
 		onFingerUp   = FingerUp;
 		onFingerDown = ExtensionMethods.EmptyMethod;
-		onFingerDrag = FingerDrag;
+
+		//todo sniper gun animation
+		var sequence = recycledSequence.Recycle( OnZoomedIn );
+		sequence.AppendCallback( notif_camera_zoom.OnZoomIn );
+		sequence.AppendInterval( notif_camera_zoom.CurrentDuration_ZoomIn() );
 	}
 
     void FingerDrag( Vector2 value )
     {
-    }
+		// var input = value.Invert(); // Vertical input affects X rotation axis & Horizontal input affetcs Y rotation axis
+		// notif_camera_rotation.OnFingerDrag( value * GameSettings.Instance.camera_rotation_speed * Time.deltaTime );
+	}
+
+    void OnZoomedIn()
+    {
+		onFingerDrag = FingerDrag;
+	}
+
+    void OnZoomedOut()
+    {
+		onFingerDown = FingerDown;
+	}
 
     void EmptyDelegates()
     {
