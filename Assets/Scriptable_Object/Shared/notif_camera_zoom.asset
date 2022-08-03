@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: feb853e8cafff9645acad29d74008d50, type: 3}
+  m_Script: {fileID: 11500000, guid: 8b724f5229fe26843b42e9a9d2e9995a, type: 3}
   m_Name: notif_camera_zoom
   m_EditorClassIdentifier: 
-  sharedValue: 60
+  sharedValue: 0

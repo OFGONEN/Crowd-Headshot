@@ -13,12 +13,18 @@ namespace FFStudio
     
     [ Title( "Camera" ) ]
         [ LabelText( "Zoom In Value" ) ] public float camera_zoom_in = 2.8f;
+        [ LabelText( "Zoom Out Value" ) ] public float camera_zoom_out = 2.8f;
         [ LabelText( "Zoom Speed" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_zoom_speed = 2.8f;
+        [ LabelText( "Zoom Ease" ) ] public Ease camera_zoom_ease;
         [ LabelText( "Rotation Speed" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_rotation_speed = 1f;
+        [ LabelText( "Rotation Default Duration" ) ] public float camera_rotation_duration = 1f;
         [ LabelText( "Rotation Clamp Horizontal" ) ] public Vector2 camera_rotation_clamp_horizontal;
         [ LabelText( "Rotation Clamp Vertical" ) ] public Vector2 camera_rotation_clamp_vertical;
         [ LabelText( "Default Rotation" ) ] public Vector3 camera_rotation_default;
         [ LabelText( "Follow Speed (Z)" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_follow_speed_depth = 2.8f;
+    
+    [ Title( "Player" ) ]
+        [ LabelText( "Player Max Shoot Distance" ) ] public float player_shoot_maxDistance = 200f;
     
     [ Title( "Project Setup", "These settings should not be edited by Level Designer(s).", TitleAlignments.Centered ) ]
         public int maxLevelCount;

@@ -12,13 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a385bd3b4416492409284c9a366cb52a, type: 3}
   m_Name: game_settings
   m_EditorClassIdentifier: 
-  camera_zoom_in: 2.8
-  camera_zoom_speed: 2.8
-  camera_rotation_speed: 1
+  camera_zoom_in: 30
+  camera_zoom_out: 60
+  camera_zoom_speed: 30
+  camera_zoom_ease: 1
+  camera_rotation_speed: 30
+  camera_rotation_duration: 0.75
   camera_rotation_clamp_horizontal: {x: -30, y: 30}
   camera_rotation_clamp_vertical: {x: -30, y: 30}
   camera_rotation_default: {x: 0, y: 0, z: 0}
   camera_follow_speed_depth: 2.8
+  player_shoot_maxDistance: 200
   maxLevelCount: 1
   useRemoteConfig_GameSettings: 0
   useRemoteConfig_Components: 0

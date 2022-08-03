@@ -30,8 +30,7 @@ public class CameraRotationNotifier : SharedVector2Notifier
 
     public void OnDefaultRotation()
     {
-		Vector2 endValue = GameSettings.Instance.camera_rotation_default;
-		recycledTween.Recycle( DOTween.To( GetValue, SetValue, endValue, GameSettings.Instance.camera_rotation_speed ).SetSpeedBased() );
+		recycledTween.Recycle( DOTween.To( GetValue, SetValue, GameSettings.Instance.camera_rotation_default, GameSettings.Instance.camera_rotation_duration ) );
 	}
 #endregion
 
