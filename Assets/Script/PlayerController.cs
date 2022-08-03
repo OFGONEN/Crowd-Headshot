@@ -16,8 +16,9 @@ public class PlayerController : MonoBehaviour
     [ SerializeField ] SharedReferenceNotifier notif_camera_reference;
 
     Transform camera_transform;
+	int player_layerMask;
 
-    UnityMessage onFingerUp;
+	UnityMessage onFingerUp;
     UnityMessage onFingerDown;
     Vector2Delegate onFingerDrag;
 
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
 		EmptyDelegates();
+
+		player_layerMask = ~LayerMask.GetMask( "Player_Combat", "Enemy_Combat", "Boss_Combat", "Ground" );
 	}
 #endregion
 
@@ -73,6 +76,17 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
 	}
 
+	void FingerUp_Shoot()
+	{
+		FingerUp();
+
+		RaycastHit hitInfo;
+		var hit = Physics.Raycast( camera_transform.position, camera_transform.forward, out hitInfo, GameSettings.Instance.player_shoot_maxDistance, player_layerMask );
+
+		if( hit )
+			FFLogger.Log( "Hit: " + hitInfo.transform.name, hitInfo.transform );
+	}
+
 	void FingerDown()
 	{
         // Handle delegates
@@ -87,13 +101,13 @@ public class PlayerController : MonoBehaviour
 
     void FingerDrag( Vector2 value )
     {
-
 		var input = new Vector2( -value.y, value.x );
 		notif_camera_rotation.OnFingerDrag( input * GameSettings.Instance.camera_rotation_speed * Time.deltaTime );
 	}
 
     void OnZoomedIn()
     {
+		onFingerUp   = FingerUp_Shoot;
 		onFingerDrag = FingerDrag;
 	}
 
