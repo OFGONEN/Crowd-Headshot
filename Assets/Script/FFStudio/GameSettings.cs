@@ -23,6 +23,9 @@ namespace FFStudio
         [ LabelText( "Default Rotation" ) ] public Vector3 camera_rotation_default;
         [ LabelText( "Follow Speed (Z)" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_follow_speed_depth = 2.8f;
     
+    [ Title( "Player" ) ]
+        [ LabelText( "Player Max Shoot Distance" ) ] public float player_shoot_maxDistance = 200f;
+    
     [ Title( "Project Setup", "These settings should not be edited by Level Designer(s).", TitleAlignments.Centered ) ]
         public int maxLevelCount;
         
