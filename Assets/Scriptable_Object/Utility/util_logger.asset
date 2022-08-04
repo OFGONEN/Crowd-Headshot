@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 458c77758dada5c49a2e3decf593db56, type: 3}
-  m_Name: logger_so
+  m_Name: util_logger
   m_EditorClassIdentifier: 

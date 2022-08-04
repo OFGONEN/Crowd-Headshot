@@ -147,7 +147,7 @@ namespace FFStudio
 			Draw.UseDashes = true;
 			Draw.DashStyle = DashStyle.RelativeDashes( DashType.Basic, 1, 1 );
 
-			var deltaPosition = tweenData.deltaPosition;
+			var deltaPosition = tweenData.endValue;
 
 			lastPos = startPos + deltaPosition;
 
