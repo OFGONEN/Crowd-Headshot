@@ -12,7 +12,9 @@ namespace FFStudio
 #region Fields
 	[ Title( "Setup" ) ]
 		[ SerializeField ] protected SharedDataNotifierType sharedDataNotifier;
-		[ SerializeField ] protected UnityEvent< SharedDataType > notify_event;
+		[ SerializeField, HideIf( "HideBaseClassOnNotifyEvent" ), LabelText( "") ] protected UnityEvent< SharedDataType > notify_event;
+
+		public virtual bool HideBaseClassOnNotifyEvent => false;
 #endregion
 
 #region Unity API

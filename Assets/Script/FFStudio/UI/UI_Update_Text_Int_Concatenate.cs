@@ -2,7 +2,7 @@
 
 namespace FFStudio
 {
-    public class UI_Update_Text_Int_Prefix : UI_Update_Text< SharedIntNotifier, int >
+    public class UI_Update_Text_Int_Concatenate : UI_Update_Text< SharedIntNotifier, int >
     {
 		public string prefix = "";
 		public string suffix = "";
