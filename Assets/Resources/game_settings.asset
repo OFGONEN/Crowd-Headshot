@@ -23,6 +23,7 @@ MonoBehaviour:
   camera_rotation_default: {x: 0, y: 0, z: 0}
   camera_follow_speed_depth: 2.8
   player_shoot_maxDistance: 200
+  enemy_animation_turn_duration: 1
   game_play_axis: {x: 0, y: 0, z: 1}
   maxLevelCount: 1
   useRemoteConfig_GameSettings: 0

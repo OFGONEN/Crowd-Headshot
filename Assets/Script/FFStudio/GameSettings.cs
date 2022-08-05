@@ -26,6 +26,8 @@ namespace FFStudio
     [ Title( "Player" ) ]
         [ LabelText( "Player Max Shoot Distance" ) ] public float player_shoot_maxDistance = 200f;
 
+    [ Title( "Enemy" ) ]
+        [ LabelText( "Enemy Turn Animation Duration" ) ] public float enemy_animation_turn_duration = 1;
 
     [ Title( "Game" ) ]
         [ LabelText( "Game-Play Axis" ) ] public Vector3 game_play_axis;
