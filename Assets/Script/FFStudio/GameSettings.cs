@@ -25,6 +25,10 @@ namespace FFStudio
     
     [ Title( "Player" ) ]
         [ LabelText( "Player Max Shoot Distance" ) ] public float player_shoot_maxDistance = 200f;
+
+
+    [ Title( "Game" ) ]
+        [ LabelText( "Game-Play Axis" ) ] public Vector3 game_play_axis;
     
     [ Title( "Project Setup", "These settings should not be edited by Level Designer(s).", TitleAlignments.Centered ) ]
         public int maxLevelCount;
