@@ -1,4 +1,4 @@
-﻿/* Created by and for usage of FF Studios (2021). */
+/* Created by and for usage of FF Studios (2021). */
 
 using UnityEngine;
 using Sirenix.OdinInspector;
@@ -28,6 +28,8 @@ namespace FFStudio
 
     [ Title( "Enemy" ) ]
         [ LabelText( "Enemy Turn Animation Duration" ) ] public float enemy_animation_turn_duration = 1;
+        [ LabelText( "Enemy Power Color Strong" ) ] public Color enemy_power_color_strong;
+        [ LabelText( "Enemy Power Color Weak" ) ] public Color enemy_power_color_weak;
 
     [ Title( "Game" ) ]
         [ LabelText( "Game-Play Axis" ) ] public Vector3 game_play_axis;
@@ -82,6 +84,11 @@ namespace FFStudio
         {
             return instance;
         }
+#endregion
+
+#region Editor Only
+#if UNITY_EDITOR
+#endif
 #endregion
     }
 }
