@@ -33,6 +33,9 @@ namespace FFStudio
 
     [ Title( "Game" ) ]
         [ LabelText( "Game-Play Axis" ) ] public Vector3 game_play_axis;
+        [ LabelText( "Vignette Effect Value" ) ] public float game_vignette_value;
+        [ LabelText( "Vignette Effect Duration" ) ] public float game_vignette_duration;
+        [ LabelText( "Vignette Effect Ease" ) ] public Ease game_vignette_ease;
     
     [ Title( "Project Setup", "These settings should not be edited by Level Designer(s).", TitleAlignments.Centered ) ]
         public int maxLevelCount;

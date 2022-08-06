@@ -27,6 +27,9 @@ MonoBehaviour:
   enemy_power_color_strong: {r: 1, g: 0, b: 0, a: 1}
   enemy_power_color_weak: {r: 0.034214735, g: 1, b: 0, a: 1}
   game_play_axis: {x: 0, y: 0, z: 1}
+  game_vignette_value: 0.35
+  game_vignette_duration: 0.65
+  game_vignette_ease: 9
   maxLevelCount: 1
   useRemoteConfig_GameSettings: 0
   useRemoteConfig_Components: 0

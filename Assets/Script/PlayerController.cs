@@ -165,9 +165,20 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
 		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
 		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
-		// todo: Vignette effect callback
-		// todo: Vignette effect add interval 
+		sequence.Join( DOTween.To( GetVignette, SetVignette,
+			GameSettings.Instance.game_vignette_value, GameSettings.Instance.game_vignette_duration ).SetEase( GameSettings.Instance.game_vignette_ease ) );
+		sequence.AppendInterval( GameSettings.Instance.game_vignette_duration );
 		sequence.AppendCallback( event_level_failed.Raise );
+	}
+
+	float GetVignette()
+	{
+		return notif_vignette_intensity.sharedValue;
+	}
+
+	void SetVignette( float value )
+	{
+		notif_vignette_intensity.SharedValue = value;
 	}
 #endregion
 
