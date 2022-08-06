@@ -27,8 +27,10 @@ public class Enemy : MonoBehaviour
     [ SerializeField ] TextMeshProUGUI enemy_text_power;
     [ SerializeField ] Animator enemy_animator;
 
-// Private
-    RecycledSequence recycledSequence = new RecycledSequence();
+	public Vector3 TeleportPosition => enemy_gfx_transform.position;
+
+	// Private
+	RecycledSequence recycledSequence = new RecycledSequence();
 // Delegates
     Vector3 enemy_position;
     ReturnPosition returnTargetPosition;
