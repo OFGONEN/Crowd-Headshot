@@ -29,7 +29,8 @@ public class Enemy : MonoBehaviour
 
 	public Vector3 TeleportPosition => enemy_gfx_transform.position;
 
-	// Private
+// Private
+	Collider[] enemy_collider;
 	RecycledSequence recycledSequence = new RecycledSequence();
 // Delegates
     Vector3 enemy_position;
@@ -42,6 +43,8 @@ public class Enemy : MonoBehaviour
 #region Unity API
     private void Awake()
     {
+		ToggleColliders( false );
+
 		enemy_position = transform.position;
 
 		enemy_text_power.text  = enemy_power.ToString();
@@ -74,6 +77,7 @@ public class Enemy : MonoBehaviour
 #region API
 	public void OnLevelStart()
 	{
+		ToggleColliders( true );
 		OnPlayerPowerChange();
 	}
 
@@ -83,6 +87,16 @@ public class Enemy : MonoBehaviour
 			enemy_text_power.color = GameSettings.Instance.enemy_power_color_weak;
 		else
 			enemy_text_power.color = GameSettings.Instance.enemy_power_color_strong;
+	}
+
+	public void Die()
+	{
+		recycledSequence.Kill();
+		ToggleColliders( false );
+		enemy_text_power.gameObject.SetActive( false );
+
+		enemy_animator.SetTrigger( "die" );
+
 	}
 #endregion
 
@@ -115,6 +129,12 @@ public class Enemy : MonoBehaviour
     void EnemyGFXTurn()
     {
 		enemy_animator.SetTrigger( "turn" );
+	}
+
+	void ToggleColliders( bool value )
+	{
+		foreach( var collider in enemy_collider )
+			collider.enabled = value;
 	}
 #endregion
 
