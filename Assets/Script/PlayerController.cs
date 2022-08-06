@@ -11,9 +11,15 @@ public class PlayerController : MonoBehaviour
 {
 #region Fields
   [ Title( "Shared Variables" ) ]
+	[ SerializeField ] SharedFloatNotifier notif_player_power;
     [ SerializeField ] CameraRotationNotifier notif_camera_rotation;
     [ SerializeField ] CameraZoomNotifier notif_camera_zoom;
     [ SerializeField ] SharedReferenceNotifier notif_camera_reference;
+	[ SerializeField ] SharedFloatNotifier notif_vignette_intensity;
+
+  [ Title( "Fired Events" ) ]
+	[ SerializeField ] ParticleSpawnEvent event_particle;
+	[ SerializeField ] GameEvent event_level_failed;
 
     Transform camera_transform;
 	int player_layerMask;
@@ -31,8 +37,10 @@ public class PlayerController : MonoBehaviour
 #region Unity API
     private void Awake()
     {
-		EmptyDelegates();
+		// Set player power to 1
+		notif_player_power.SetValue_DontNotify( 1 );
 
+		EmptyDelegates();
 		player_layerMask = ~LayerMask.GetMask( "Player_Combat", "Enemy_Combat", "Boss_Combat", "Ground" );
 	}
 #endregion
@@ -84,7 +92,12 @@ public class PlayerController : MonoBehaviour
 		var hit = Physics.Raycast( camera_transform.position, camera_transform.forward, out hitInfo, GameSettings.Instance.player_shoot_maxDistance, player_layerMask );
 
 		if( hit )
-			FFLogger.Log( "Hit: " + hitInfo.transform.name, hitInfo.transform );
+		{
+			Component attachedComponent = null;
+			attachedComponent = hitInfo.collider.GetComponent< TriggerListener_Enter >()?.AttachedComponent;
+
+			DamageEnemy( hitInfo.point, attachedComponent );
+		}
 	}
 
 	void FingerDown()
@@ -121,6 +134,40 @@ public class PlayerController : MonoBehaviour
 		onFingerUp   = ExtensionMethods.EmptyMethod;
 		onFingerDown = ExtensionMethods.EmptyMethod;
 		onFingerDrag = ExtensionMethods.EmptyMethod;
+	}
+
+	void DamageEnemy( Vector3 hitPosition, Component component )
+	{
+		event_particle.Raise( "hit", hitPosition );
+
+		if( component is Enemy )
+		{
+			var enemy = component as Enemy;
+			var enemyPower = enemy.Power;
+
+			if( notif_player_power.sharedValue >= enemyPower )
+			{
+				enemy.Die();
+				transform.position = enemy.TeleportPosition;
+
+				notif_player_power.SharedValue += enemyPower;
+			}
+			else
+				LevelFailed();
+		}
+	}
+
+	void LevelFailed()
+	{
+		EmptyDelegates();
+
+		var sequence = recycledSequence.Recycle();
+		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
+		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
+		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
+		// todo: Vignette effect callback
+		// todo: Vignette effect add interval 
+		sequence.AppendCallback( event_level_failed.Raise );
 	}
 #endregion
 
