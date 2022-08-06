@@ -84,6 +84,7 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
 		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
 		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
+		sequence.AppendCallback( event_scope_off.Raise );
 	}
 
 	void FingerUp_Shoot()
@@ -124,6 +125,8 @@ public class PlayerController : MonoBehaviour
     {
 		onFingerUp   = FingerUp_Shoot;
 		onFingerDrag = FingerDrag;
+
+		event_scope_on.Raise();
 	}
 
     void OnZoomedOut()
@@ -169,6 +172,7 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
 		sequence.Join( DOTween.To( GetVignette, SetVignette,
 			GameSettings.Instance.game_vignette_value, GameSettings.Instance.game_vignette_duration ).SetEase( GameSettings.Instance.game_vignette_ease ) );
+		sequence.AppendCallback( event_scope_off.Raise );
 		sequence.AppendInterval( GameSettings.Instance.game_vignette_duration );
 		sequence.AppendCallback( event_level_failed.Raise );
 	}
