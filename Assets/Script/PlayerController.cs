@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
   [ Title( "Fired Events" ) ]
 	[ SerializeField ] ParticleSpawnEvent event_particle;
 	[ SerializeField ] GameEvent event_level_failed;
+	[ SerializeField ] GameEvent event_scope_on;
+	[ SerializeField ] GameEvent event_scope_off;
 
     Transform camera_transform;
 	int player_layerMask;
