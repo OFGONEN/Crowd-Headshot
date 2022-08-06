@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     [ SerializeField ] Animator enemy_animator;
 
 	public Vector3 TeleportPosition => enemy_gfx_transform.position;
+	public float Power => enemy_power;
 
 // Private
 	Collider[] enemy_collider;
