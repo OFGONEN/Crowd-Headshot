@@ -2,7 +2,7 @@
 
 namespace FFStudio
 {
-    public class UI_Update_Text_Float_Prefix : UI_Update_Text< SharedFloatNotifier, float >
+    public class UI_Update_Text_Float_Concatenate : UI_Update_Text< SharedFloatNotifier, float >
     {
 		public string prefix = "";
 		public string suffix = "";

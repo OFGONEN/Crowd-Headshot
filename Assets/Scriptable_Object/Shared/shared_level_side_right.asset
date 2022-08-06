@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458c77758dada5c49a2e3decf593db56, type: 3}
-  m_Name: logger_so
+  m_Script: {fileID: 11500000, guid: 91e0b3b651e945348ace1b419e942208, type: 3}
+  m_Name: shared_level_side_right
   m_EditorClassIdentifier: 
+  sharedValue: {x: 0, y: 0, z: 0}
