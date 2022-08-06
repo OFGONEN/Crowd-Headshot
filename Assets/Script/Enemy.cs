@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FFStudio;
+using TMPro;
 using DG.Tweening;
 using Sirenix.OdinInspector;
 
@@ -13,14 +14,17 @@ public class Enemy : MonoBehaviour
   [ Title( "Shared Variables" ) ]
     [ SerializeField ] SharedVector3 shared_level_position_left;
     [ SerializeField ] SharedVector3 shared_level_position_right;
+    [ SerializeField ] SharedFloatNotifier notif_player_power;
 
   [ Title( "Setup" ) ]
+    [ SerializeField ] int enemy_power;
     [ SerializeField ] bool enemy_is_walking;
     [ SerializeField, ShowIf( "enemy_is_walking" ) ] bool enemy_walking_right;
     [ SerializeField, ShowIf( "enemy_is_walking" ) ] float enemy_walking_speed;
 
   [ Title( "Setup" ) ]
     [ SerializeField ] Transform enemy_gfx_transform;
+    [ SerializeField ] TextMeshProUGUI enemy_text_power;
     [ SerializeField ] Animator enemy_animator;
 
 // Private
@@ -37,6 +41,9 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
 		enemy_position = transform.position;
+
+		enemy_text_power.text  = enemy_power.ToString();
+		enemy_text_power.color = GameSettings.Instance.enemy_power_color_strong;
 
 		if( enemy_is_walking )
         {
@@ -63,6 +70,18 @@ public class Enemy : MonoBehaviour
 #endregion
 
 #region API
+	public void OnLevelStart()
+	{
+		OnPlayerPowerChange();
+	}
+
+	public void OnPlayerPowerChange()
+	{
+		if( notif_player_power.sharedValue <= enemy_power )
+			enemy_text_power.color = GameSettings.Instance.enemy_power_color_weak;
+		else
+			enemy_text_power.color = GameSettings.Instance.enemy_power_color_strong;
+	}
 #endregion
 
 #region Implementation
