@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
 	[ SerializeField ] GameEvent event_scope_shoot;
 	[ SerializeField ] GameEvent event_scope_off;
 
+  [ Title( "Shared Variables" ) ]
+	[ SerializeField ] Animator player_animator;
+
     Transform camera_transform;
 	int player_layerMask;
 
@@ -86,6 +89,8 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
 		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
 		sequence.AppendCallback( event_scope_off.Raise );
+		sequence.AppendCallback( PlayerGunDown );
+		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
 	}
 
 	void FingerUp_Shoot()
@@ -99,6 +104,8 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
 		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
 		sequence.AppendCallback( event_scope_off.Raise );
+		sequence.AppendCallback( PlayerGunDown );
+		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
 
 		RaycastHit hitInfo;
 		var hit = Physics.Raycast( camera_transform.position, camera_transform.forward, out hitInfo, GameSettings.Instance.player_shoot_maxDistance, player_layerMask );
@@ -120,6 +127,8 @@ public class PlayerController : MonoBehaviour
 
 		//todo sniper gun animation
 		var sequence = recycledSequence.Recycle( OnZoomedIn );
+		sequence.AppendCallback( PlayerGunUp );
+		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
 		sequence.AppendCallback( notif_camera_zoom.OnZoomIn );
 		sequence.AppendInterval( notif_camera_zoom.CurrentDuration_ZoomIn() );
 	}
@@ -141,6 +150,16 @@ public class PlayerController : MonoBehaviour
     void OnZoomedOut()
     {
 		onFingerDown = FingerDown;
+	}
+
+	void PlayerGunUp()
+	{
+		player_animator.SetBool( "gun", true );
+	}
+
+	void PlayerGunDown()
+	{
+		player_animator.SetBool( "gun", false );
 	}
 
     void EmptyDelegates()
@@ -174,6 +193,7 @@ public class PlayerController : MonoBehaviour
 	void LevelFailed()
 	{
 		EmptyDelegates();
+		//!todo burayi tekrar dusun 
 
 		var sequence = recycledSequence.Recycle();
 		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
