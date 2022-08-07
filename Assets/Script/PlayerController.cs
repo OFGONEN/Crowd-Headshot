@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
 
 		var sequence = recycledSequence.Recycle( OnZoomedOut );
 		sequence.AppendCallback( event_scope_shoot.Raise );
-		//todo: Crosshair tween duration sequence.AppendInterval( )
+		sequence.AppendInterval( GameSettings.Instance.ui_crosshair_shoot_duration_on + GameSettings.Instance.ui_crosshair_shoot_duration_off );
 		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
 		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
 		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
