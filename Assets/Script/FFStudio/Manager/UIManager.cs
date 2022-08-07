@@ -26,12 +26,18 @@ namespace FFStudio
         public Image foreGroundImage;
         public RectTransform tutorialObjects;
 
+    [ Title( "UI Scope Elements" ) ]
+        public GameObject parent_scope;
+        public RectTransform rect_scope_crosshair;
+
     [ Title( "Fired Events" ) ]
         public GameEvent levelRevealedEvent;
         public GameEvent loadNewLevelEvent;
         public GameEvent resetLevelEvent;
         public GameEvent event_level_started;
         public ElephantLevelEvent elephantLevelEvent;
+    
+    RecycledSequence recycledSequence = new RecycledSequence();
 #endregion
 
 #region Unity API
@@ -60,6 +66,46 @@ namespace FFStudio
 
 			level_information_text.text = "Tap to Start";
         }
+#endregion
+
+#region API
+        public void OnScopeOn()
+        {
+			recycledSequence.Kill();
+
+			rect_scope_crosshair.eulerAngles = Vector3.zero;
+			rect_scope_crosshair.localScale  = Vector3.one;
+
+			parent_scope.SetActive( true );
+		}
+
+        public void OnScopeOff()
+        {
+			parent_scope.SetActive( false );
+        }
+
+        public void OnScopeShoot()
+        {
+			var duration_on = GameSettings.Instance.ui_crosshair_shoot_duration_on;
+			var ease_on     = GameSettings.Instance.ui_crosshair_shoot_ease_on;
+
+			var duration_off = GameSettings.Instance.ui_crosshair_shoot_duration_off;
+			var ease_off = GameSettings.Instance.ui_crosshair_shoot_ease_off;
+
+			var sequence = recycledSequence.Recycle();
+			sequence.Append( rect_scope_crosshair.DOScale(
+				GameSettings.Instance.ui_crosshair_shoot_scale, duration_on )
+				.SetEase( ease_on ) );
+			sequence.Join( rect_scope_crosshair.DORotate(
+				GameSettings.Instance.ui_crosshair_shoot_rotation * Vector3.one, duration_on )
+				.SetEase( ease_on ) );
+			sequence.Append( rect_scope_crosshair.DOScale(
+				1, duration_off )
+				.SetEase( ease_off ) );
+			sequence.Join( rect_scope_crosshair.DORotate(
+				Vector3.one, duration_off )
+				.SetEase( ease_off ) );
+		}
 #endregion
 
 #region Implementation
