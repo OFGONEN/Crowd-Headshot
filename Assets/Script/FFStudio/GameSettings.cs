@@ -31,6 +31,14 @@ namespace FFStudio
         [ LabelText( "Enemy Power Color Strong" ) ] public Color enemy_power_color_strong;
         [ LabelText( "Enemy Power Color Weak" ) ] public Color enemy_power_color_weak;
 
+    [ Title( "Game UI" ) ]
+        [ LabelText( "Crosshair Shoot Scale" ) ] public float ui_crosshair_shoot_scale;
+        [ LabelText( "Crosshair Shoot Rotation" ) ] public float ui_crosshair_shoot_rotation;
+        [ LabelText( "Crosshair Shoot Duration On" ) ] public float ui_crosshair_shoot_duration_on;
+        [ LabelText( "Crosshair Shoot Duration Off" ) ] public float ui_crosshair_shoot_duration_off;
+        [ LabelText( "Crosshair Shoot Ease On" ) ] public Ease ui_crosshair_shoot_ease_on;
+        [ LabelText( "Crosshair Shoot Ease Off" ) ] public Ease ui_crosshair_shoot_ease_off;
+
     [ Title( "Game" ) ]
         [ LabelText( "Game-Play Axis" ) ] public Vector3 game_play_axis;
         [ LabelText( "Vignette Effect Value" ) ] public float game_vignette_value;
