@@ -18,6 +18,7 @@ public class Enemy : MonoBehaviour
 
   [ Title( "Setup" ) ]
     [ SerializeField ] int enemy_power;
+    [ SerializeField ] bool enemy_is_boss;
     [ SerializeField ] bool enemy_is_walking;
     [ SerializeField, ShowIf( "enemy_is_walking" ) ] bool enemy_walking_right;
     [ SerializeField, ShowIf( "enemy_is_walking" ) ] float enemy_walking_speed;
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
     [ SerializeField ] TextMeshProUGUI enemy_text_power;
     [ SerializeField ] Animator enemy_animator;
 
+	public bool IsBoss => enemy_is_boss;
 	public Vector3 TeleportPosition => enemy_gfx_transform.position;
 	public float Power => enemy_power;
 
