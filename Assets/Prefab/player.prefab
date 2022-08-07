@@ -54,6 +54,9 @@ MonoBehaviour:
   notif_vignette_intensity: {fileID: 11400000, guid: 4e7ff7e6270e02547bc2008b2c440444, type: 2}
   event_particle: {fileID: 11400000, guid: fe240f220ab36cc44923227184f9c2a7, type: 2}
   event_level_failed: {fileID: 11400000, guid: ec850936269bc2e47b26cfebd8bdad97, type: 2}
+  event_scope_on: {fileID: 11400000, guid: 6926a3a9a82bdd040ad1fa0992b48f48, type: 2}
+  event_scope_shoot: {fileID: 11400000, guid: f6ab31204b116c448822c1d50b733880, type: 2}
+  event_scope_off: {fileID: 11400000, guid: 363f3b99d6b3f1843befc2210a213e88, type: 2}
 --- !u!1 &3743582621658394401
 GameObject:
   m_ObjectHideFlags: 0
