@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
 
   [ Title( "Fired Events" ) ]
 	[ SerializeField ] ParticleSpawnEvent event_particle;
+	[ SerializeField ] GameEvent event_level_completed;
 	[ SerializeField ] GameEvent event_level_failed;
 	[ SerializeField ] GameEvent event_scope_on;
 	[ SerializeField ] GameEvent event_scope_shoot;
@@ -97,16 +98,6 @@ public class PlayerController : MonoBehaviour
 	{
 		EmptyDelegates();
 
-		var sequence = recycledSequence.Recycle( OnZoomedOut );
-		sequence.AppendCallback( event_scope_shoot.Raise );
-		sequence.AppendInterval( GameSettings.Instance.ui_crosshair_shoot_duration_on + GameSettings.Instance.ui_crosshair_shoot_duration_off );
-		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
-		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
-		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
-		sequence.AppendCallback( event_scope_off.Raise );
-		sequence.AppendCallback( PlayerGunDown );
-		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
-
 		RaycastHit hitInfo;
 		var hit = Physics.Raycast( camera_transform.position, camera_transform.forward, out hitInfo, GameSettings.Instance.player_shoot_maxDistance, player_layerMask );
 
@@ -115,8 +106,44 @@ public class PlayerController : MonoBehaviour
 			Component attachedComponent = null;
 			attachedComponent = hitInfo.collider.GetComponent< TriggerListener_Enter >()?.AttachedComponent;
 
-			DamageEnemy( hitInfo.point, attachedComponent );
+			event_particle.Raise( "hit", hitInfo.point );
+
+			if( attachedComponent is Enemy )
+			{
+				var enemy = attachedComponent as Enemy;
+				var enemyPower = enemy.Power;
+
+				if( notif_player_power.sharedValue >= enemyPower )
+				{
+					enemy.Die();
+					notif_player_power.SharedValue += enemyPower;
+
+					if( enemy.IsBoss )
+					{
+						var sequence = recycledSequence.Recycle();
+						sequence.AppendCallback( event_scope_shoot.Raise );
+						sequence.AppendInterval( GameSettings.Instance.ui_crosshair_shoot_duration_on + GameSettings.Instance.ui_crosshair_shoot_duration_off );
+						sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
+						sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
+						sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
+						sequence.AppendCallback( event_scope_off.Raise );
+						sequence.AppendCallback( PlayerGunDown );
+						sequence.AppendCallback( event_level_completed.Raise );
+					}
+					else
+					{
+						PlayerScopeOffSequence();
+
+						// Teleport to enemy position
+						transform.position = enemy.TeleportPosition;
+					}
+				}
+				else
+					LevelFailed();
+			}
 		}
+		else
+			PlayerScopeOffSequence();
 	}
 
 	void FingerDown()
@@ -125,7 +152,6 @@ public class PlayerController : MonoBehaviour
 		onFingerUp   = FingerUp;
 		onFingerDown = ExtensionMethods.EmptyMethod;
 
-		//todo sniper gun animation
 		var sequence = recycledSequence.Recycle( OnZoomedIn );
 		sequence.AppendCallback( PlayerGunUp );
 		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
@@ -181,20 +207,36 @@ public class PlayerController : MonoBehaviour
 			if( notif_player_power.sharedValue >= enemyPower )
 			{
 				enemy.Die();
-				transform.position = enemy.TeleportPosition;
-
 				notif_player_power.SharedValue += enemyPower;
+
+
+				if( enemy.IsBoss )
+				{
+
+				}
+				else
+					transform.position = enemy.TeleportPosition;
 			}
 			else
 				LevelFailed();
 		}
 	}
 
+	void PlayerScopeOffSequence()
+	{
+		var sequence = recycledSequence.Recycle( OnZoomedOut );
+		sequence.AppendCallback( event_scope_shoot.Raise );
+		sequence.AppendInterval( GameSettings.Instance.ui_crosshair_shoot_duration_on + GameSettings.Instance.ui_crosshair_shoot_duration_off );
+		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
+		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
+		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
+		sequence.AppendCallback( event_scope_off.Raise );
+		sequence.AppendCallback( PlayerGunDown );
+		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
+	}
+
 	void LevelFailed()
 	{
-		EmptyDelegates();
-		//!todo burayi tekrar dusun 
-
 		var sequence = recycledSequence.Recycle();
 		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
 		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
