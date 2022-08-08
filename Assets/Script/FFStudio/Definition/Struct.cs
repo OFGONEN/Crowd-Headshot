@@ -196,4 +196,11 @@ namespace FFStudio
 		public Color color;
 		[ SuffixLabel( "%" ) ] public NormalizedValue threshold;
 	}
+
+	[ Serializable ]
+	public struct AnimatorRandom_Integer
+	{
+		public string parameter_name;
+		public int parameter_max;
+	}
 }
