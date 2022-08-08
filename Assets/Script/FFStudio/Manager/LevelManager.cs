@@ -44,6 +44,11 @@ namespace FFStudio
         {
 
         }
+
+        public void OnPlayerPowerChange( float value )
+        {
+			levelProgress.SharedValue = value / CurrentLevelData.Instance.levelData.boss_power_level;
+		}
 #endregion
 
 #region Implementation
