@@ -75,8 +75,6 @@ public class Enemy : MonoBehaviour
 				returnTargetPosition = ReturnTargetPosition_Left;
             }
             
-		    enemy_gfx_transform.forward = targetPosition - enemy_gfx_transform.position;
-
 			enemy_animator.SetTrigger( "walk" );
 
 			CreateWalkingSequence();
@@ -116,6 +114,7 @@ public class Enemy : MonoBehaviour
     void CreateWalkingSequence()
     {
 		var targetPosition = returnTargetPosition();
+		enemy_gfx_transform.forward = targetPosition - enemy_gfx_transform.position;
 
 		var duration = Vector3.Distance( enemy_gfx_transform.position, targetPosition ) / enemy_walking_speed; // X = V * t;
 
