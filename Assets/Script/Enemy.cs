@@ -44,6 +44,11 @@ public class Enemy : MonoBehaviour
 #endregion
 
 #region Unity API
+	private void OnDisable()
+	{
+		recycledSequence.Kill();
+	}
+
     private void Awake()
     {
 		ToggleColliders( false );
