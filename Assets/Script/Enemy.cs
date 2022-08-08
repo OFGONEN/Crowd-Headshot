@@ -70,6 +70,8 @@ public class Enemy : MonoBehaviour
             
 		    enemy_gfx_transform.forward = targetPosition - enemy_gfx_transform.position;
 
+			enemy_animator.SetTrigger( "walk" );
+
 			CreateWalkingSequence();
         }
 		else // Stay Idle facing the Player
