@@ -25,6 +25,7 @@ namespace FFStudio
         public Image loadingScreenImage;
         public Image foreGroundImage;
         public RectTransform tutorialObjects;
+        public RectTransform parent_level_progress;
 
     [ Title( "UI Scope Elements" ) ]
         public GameObject parent_scope;
@@ -76,11 +77,13 @@ namespace FFStudio
 			rect_scope_crosshair.eulerAngles = Vector3.zero;
 			rect_scope_crosshair.localScale  = Vector3.one;
 
+			parent_level_progress.gameObject.SetActive( false );
 			parent_scope.SetActive( true );
 		}
 
         public void OnScopeOff()
         {
+			parent_level_progress.gameObject.SetActive( true );
 			parent_scope.SetActive( false );
         }
 
