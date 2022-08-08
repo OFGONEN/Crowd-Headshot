@@ -27,13 +27,13 @@ public class Enemy : MonoBehaviour
     [ SerializeField ] Transform enemy_gfx_transform;
     [ SerializeField ] TextMeshProUGUI enemy_text_power;
     [ SerializeField ] Animator enemy_animator;
+	[ SerializeField ] Collider[] enemy_collider;
 
 	public bool IsBoss => enemy_is_boss;
 	public Vector3 TeleportPosition => enemy_gfx_transform.position;
 	public float Power => enemy_power;
 
 // Private
-	Collider[] enemy_collider;
 	RecycledSequence recycledSequence = new RecycledSequence();
 // Delegates
     Vector3 enemy_position;
@@ -51,6 +51,8 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+
+
 		ToggleColliders( false );
 
 		enemy_position = transform.position;
