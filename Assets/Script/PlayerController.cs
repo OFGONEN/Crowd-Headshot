@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
 	[ SerializeField ] GameEvent event_scope_shoot;
 	[ SerializeField ] GameEvent event_scope_off;
 
-  [ Title( "Shared Variables" ) ]
+  [ Title( "Components" ) ]
 	[ SerializeField ] Animator player_animator;
 
     Transform camera_transform;
