@@ -35,6 +35,7 @@ namespace FFStudio
 		public string alias;
 		public bool parent;
 		public Vector3 offset;
+		public Vector3 rotation;
 		public float size;
 	}
 
