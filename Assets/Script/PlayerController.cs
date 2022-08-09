@@ -197,31 +197,6 @@ public class PlayerController : MonoBehaviour
 		onFingerDrag = ExtensionMethods.EmptyMethod;
 	}
 
-	void DamageEnemy( Vector3 hitPosition, Component component )
-	{
-		if( component is Enemy )
-		{
-			var enemy = component as Enemy;
-			var enemyPower = enemy.Power;
-
-			if( notif_player_power.sharedValue >= enemyPower )
-			{
-				enemy.Die();
-				notif_player_power.SharedValue += enemyPower;
-
-
-				if( enemy.IsBoss )
-				{
-
-				}
-				else
-					transform.position = enemy.TeleportPosition;
-			}
-			else
-				LevelFailed();
-		}
-	}
-
 	void PlayerScopeOffSequence()
 	{
 		var sequence = recycledSequence.Recycle( OnZoomedOut );
