@@ -11,14 +11,19 @@ using Sirenix.OdinInspector;
 public class CameraController : MonoBehaviour
 {
 #region Fields
-  [ Title( "Components" ) ]
+  [ Title( "Setup" ) ]
     [ SerializeField ] Camera _camera;
+	[ SerializeField ] CameraZoomNotifier notif_camera_zoom;
 #endregion
 
 #region Properties
 #endregion
 
 #region Unity API
+	private void Awake()
+	{
+		notif_camera_zoom.sharedValue = _camera.fieldOfView;
+	}
 #endregion
 
 #region API
