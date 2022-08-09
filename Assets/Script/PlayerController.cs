@@ -106,7 +106,9 @@ public class PlayerController : MonoBehaviour
 			Component attachedComponent = null;
 			attachedComponent = hitInfo.collider.GetComponent< TriggerListener_Enter >()?.AttachedComponent;
 
-			event_particle.Raise( "hit", hitInfo.point );
+			var particleRotation = Quaternion.LookRotation( ( transform.position - hitInfo.point ).normalized, Vector3.up ).eulerAngles.SetX( 0 ).SetZ( 0 );
+
+			event_particle.Raise( "hit", hitInfo.point, particleRotation );
 
 			if( attachedComponent is Enemy )
 			{
@@ -197,8 +199,6 @@ public class PlayerController : MonoBehaviour
 
 	void DamageEnemy( Vector3 hitPosition, Component component )
 	{
-		event_particle.Raise( "hit", hitPosition );
-
 		if( component is Enemy )
 		{
 			var enemy = component as Enemy;
