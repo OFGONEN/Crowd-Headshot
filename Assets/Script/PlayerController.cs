@@ -182,12 +182,12 @@ public class PlayerController : MonoBehaviour
 
 	void PlayerGunUp()
 	{
-		player_animator.SetBool( "gun", true );
+		player_animator.SetBool( "up", true );
 	}
 
 	void PlayerGunDown()
 	{
-		player_animator.SetBool( "gun", false );
+		player_animator.SetBool( "up", false );
 	}
 
     void EmptyDelegates()
