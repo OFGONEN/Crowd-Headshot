@@ -298,6 +298,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3438e84a805f6314e97a7d99b667f153, type: 3}
+--- !u!1 &1102929509586145390 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 414754142227409116, guid: 3438e84a805f6314e97a7d99b667f153, type: 3}
+  m_PrefabInstance: {fileID: 761077801884039346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2517513961354906306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102929509586145390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245dc21cc9428744fa28ad2d6ce7d327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventPairs:
+  - eventListener:
+      gameEvents:
+      - {fileID: 11400000, guid: 6926a3a9a82bdd040ad1fa0992b48f48, type: 2}
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8084764527995384729}
+          m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventListener:
+      gameEvents:
+      - {fileID: 11400000, guid: 363f3b99d6b3f1843befc2210a213e88, type: 2}
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 8084764527995384729}
+          m_TargetAssemblyTypeName: UnityEngine.Renderer, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
 --- !u!4 &1561792602215351394 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2243775726679145680, guid: 3438e84a805f6314e97a7d99b667f153, type: 3}
@@ -306,6 +360,11 @@ Transform:
 --- !u!95 &2675533649487610331 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3435828253547034985, guid: 3438e84a805f6314e97a7d99b667f153, type: 3}
+  m_PrefabInstance: {fileID: 761077801884039346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &8084764527995384729 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8844294214703139627, guid: 3438e84a805f6314e97a7d99b667f153, type: 3}
   m_PrefabInstance: {fileID: 761077801884039346}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8074422548507286906
