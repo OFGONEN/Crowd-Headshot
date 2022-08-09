@@ -42,10 +42,15 @@ public class PlayerController : MonoBehaviour
 #endregion
 
 #region Unity API
+	private void OnDisable()
+	{
+		recycledSequence.Kill();
+	}
+
     private void Awake()
     {
 		// Set player power to 1
-		notif_player_power.SetValue_DontNotify( 1 );
+		notif_player_power.SetValue_NotifyAlways( 1 );
 
 		EmptyDelegates();
 		player_layerMask = LayerMask.GetMask( "Enemy_Combat", "Boss_Combat", "Ground" );
