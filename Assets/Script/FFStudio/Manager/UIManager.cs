@@ -29,6 +29,8 @@ namespace FFStudio
 
     [ Title( "UI Scope Elements" ) ]
         public GameObject parent_scope;
+        public RectTransform rect_scope_mask;
+        public RectTransform rect_scope_background;
         public RectTransform rect_scope_crosshair;
 
     [ Title( "Fired Events" ) ]
@@ -66,7 +68,9 @@ namespace FFStudio
             tapInputListener.response      = ExtensionMethods.EmptyMethod;
 
 			level_information_text.text = "Tap to Start";
-        }
+
+			rect_scope_background.sizeDelta = new Vector2( Screen.width, Screen.height );
+		}
 #endregion
 
 #region API
@@ -76,6 +80,7 @@ namespace FFStudio
 
 			rect_scope_crosshair.eulerAngles = Vector3.zero;
 			rect_scope_crosshair.localScale  = Vector3.one;
+			rect_scope_mask.localScale       = Vector3.one;
 
 			parent_level_progress.gameObject.SetActive( false );
 			parent_scope.SetActive( true );
@@ -99,10 +104,16 @@ namespace FFStudio
 			sequence.Append( rect_scope_crosshair.DOScale(
 				GameSettings.Instance.ui_crosshair_shoot_scale, duration_on )
 				.SetEase( ease_on ) );
+ 			sequence.Join( rect_scope_mask.DOScale(
+				GameSettings.Instance.ui_crosshair_shoot_scale, duration_on )
+				.SetEase( ease_on ) );
 			sequence.Join( rect_scope_crosshair.DORotate(
 				GameSettings.Instance.ui_crosshair_shoot_rotation * Vector3.one, duration_on )
 				.SetEase( ease_on ) );
 			sequence.Append( rect_scope_crosshair.DOScale(
+				1, duration_off )
+				.SetEase( ease_off ) );
+			sequence.Join( rect_scope_mask.DOScale(
 				1, duration_off )
 				.SetEase( ease_off ) );
 			sequence.Join( rect_scope_crosshair.DORotate(
