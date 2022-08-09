@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 		notif_player_power.SetValue_DontNotify( 1 );
 
 		EmptyDelegates();
-		player_layerMask = ~LayerMask.GetMask( "Enemy_Combat", "Boss_Combat", "Ground" );
+		player_layerMask = LayerMask.GetMask( "Enemy_Combat", "Boss_Combat", "Ground" );
 	}
 #endregion
 
