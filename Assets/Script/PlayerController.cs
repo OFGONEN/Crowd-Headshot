@@ -103,16 +103,15 @@ public class PlayerController : MonoBehaviour
 
 		if( hit )
 		{
-			Component attachedComponent = null;
-			attachedComponent = hitInfo.collider.GetComponent< TriggerListener_Enter >()?.AttachedComponent;
-
+			// Spawn hit particle effect
 			var particleRotation = Quaternion.LookRotation( ( transform.position - hitInfo.point ).normalized, Vector3.up ).eulerAngles.SetX( 0 ).SetZ( 0 );
-
 			event_particle.Raise( "hit", hitInfo.point, particleRotation );
 
-			if( attachedComponent is Enemy )
+			var triggerListener = hitInfo.collider.GetComponent< TriggerListener_Enter >();
+
+			if( triggerListener != null && triggerListener.AttachedComponent is Enemy )
 			{
-				var enemy = attachedComponent as Enemy;
+				var enemy      = triggerListener.AttachedComponent as Enemy;
 				var enemyPower = enemy.Power;
 
 				if( notif_player_power.sharedValue >= enemyPower )
@@ -143,6 +142,8 @@ public class PlayerController : MonoBehaviour
 				else
 					LevelFailed();
 			}
+			else
+				PlayerScopeOffSequence();
 		}
 		else
 			PlayerScopeOffSequence();
