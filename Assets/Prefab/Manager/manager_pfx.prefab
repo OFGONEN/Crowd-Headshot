@@ -50,4 +50,5 @@ MonoBehaviour:
     gameEvent: {fileID: 11400000, guid: 0e566b9988b734020893e6b1049f50df, type: 2}
   pools_pfx:
   - {fileID: 11400000, guid: 38d6edfe268284b5d9054024988a89a3, type: 2}
+  - {fileID: 11400000, guid: 41b35c97a53d44a5b9d667ac378e36c9, type: 2}
   pools_pfx_random: []
