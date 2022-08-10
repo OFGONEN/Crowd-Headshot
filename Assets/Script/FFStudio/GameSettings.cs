@@ -26,6 +26,8 @@ namespace FFStudio
     [ Title( "Player" ) ]
         [ LabelText( "Player Max Shoot Distance" ) ] public float player_shoot_maxDistance = 200f;
         [ LabelText( "Player Gun Aim Duration" ) ] public float player_aim_duration = 1;
+        [ LabelText( "Player Move Speed" ) ] public float player_move_speed = 5;
+        [ LabelText( "Player Move Ease" ) ] public Ease player_move_ease;
 
     [ Title( "Enemy" ) ]
         [ LabelText( "Enemy Turn Animation Duration" ) ] public float enemy_animation_turn_duration = 1;
