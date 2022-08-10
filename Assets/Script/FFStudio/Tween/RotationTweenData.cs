@@ -13,13 +13,21 @@ namespace FFStudio
         
 #region Fields
     [ Title( "Rotation Tween" ) ]
-        [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ), SuffixLabel( "Degrees (°)" ) ] public float deltaAngle;
-        [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ), SuffixLabel( "Degrees/Seconds (°/s)" ), Min( 0 ) ] public float angularSpeedInDegrees;
+		[ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ) ] public bool useDelta = true;
+#if UNITY_EDITOR
+		[ InfoBox( "End Value is RELATIVE.", "useDelta" ) ]
+		[ InfoBox( "End Value is ABSOLUTE.", "EndValueIsAbsolute" ) ]
+#endif
+        [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ), SuffixLabel( "Degrees (°)" ) ] public float endValue;
+#if UNITY_EDITOR
+		[ InfoBox( "Duration is DURATION (seconds).", "useDelta" ) ]
+		[ InfoBox( "Duration is ANGULAR VELOCITY (degrees/seconds).", "EndValueIsAbsolute" ) ]
+#endif
+        [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ), Min( 0 ) ] public float duration;
         [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ) ] public RotationMode rotationMode;
         [ BoxGroup( "Tween" ), PropertyOrder( int.MinValue ), ValueDropdown( "VectorValues" ), LabelText( "Rotate Around" ) ]
             public Vector3 rotationAxisMaskVector = Vector3.right;
 
-        float Duration => Mathf.Abs( deltaAngle / angularSpeedInDegrees );
 
         IEnumerable VectorValues = new ValueDropdownList< Vector3 >()
         {
@@ -30,6 +38,9 @@ namespace FFStudio
 #endregion
 
 #region Properties
+#if UNITY_EDITOR
+		bool EndValueIsAbsolute => !useDelta;
+#endif
 #endregion
 
 #region Unity API
@@ -41,10 +52,14 @@ namespace FFStudio
 #region Implementation
         protected override void CreateAndStartTween( UnityMessage onComplete, bool isReversed = false )
         {
+			float duration = useDelta ? Mathf.Abs( endValue / this.duration ) : this.duration;
+
 			if( rotationMode == RotationMode.Local )
-				recycledTween.Recycle( transform.DOLocalRotate( rotationAxisMaskVector * deltaAngle, Duration, RotateMode.LocalAxisAdd ), onComplete );
+				recycledTween.Recycle( transform.DOLocalRotate( rotationAxisMaskVector * endValue, duration, useDelta ? RotateMode.LocalAxisAdd : RotateMode.Fast ),
+                                       onComplete );
 			else
-				recycledTween.Recycle( transform.DORotate( rotationAxisMaskVector * deltaAngle, Duration, RotateMode.WorldAxisAdd ), onComplete );
+				recycledTween.Recycle( transform.DORotate( rotationAxisMaskVector * endValue, duration, useDelta ? RotateMode.WorldAxisAdd : RotateMode.Fast ),
+                                       onComplete );
 
 			recycledTween.Tween // Don't need to set SetRelative() as RotateMode.XXXAxisAdd automatically means relative end value.
 				 .SetEase( easing )

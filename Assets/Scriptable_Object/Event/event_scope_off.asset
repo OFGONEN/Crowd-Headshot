@@ -9,6 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 458c77758dada5c49a2e3decf593db56, type: 3}
-  m_Name: logger_so
+  m_Script: {fileID: 11500000, guid: a2c4e783e43fe4f4fa08e6785f264a60, type: 3}
+  m_Name: event_scope_off
   m_EditorClassIdentifier: 
+  canRaiseOtherEvents: 0
+  eventsThatWillAlsoBeRaised: []

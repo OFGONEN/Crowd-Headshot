@@ -25,6 +25,13 @@ namespace FFStudio
         public Image loadingScreenImage;
         public Image foreGroundImage;
         public RectTransform tutorialObjects;
+        public RectTransform parent_level_progress;
+
+    [ Title( "UI Scope Elements" ) ]
+        public GameObject parent_scope;
+        public RectTransform rect_scope_mask;
+        public RectTransform rect_scope_background;
+        public RectTransform rect_scope_crosshair;
 
     [ Title( "Fired Events" ) ]
         public GameEvent levelRevealedEvent;
@@ -32,6 +39,8 @@ namespace FFStudio
         public GameEvent resetLevelEvent;
         public GameEvent event_level_started;
         public ElephantLevelEvent elephantLevelEvent;
+    
+    RecycledSequence recycledSequence = new RecycledSequence();
 #endregion
 
 #region Unity API
@@ -59,7 +68,58 @@ namespace FFStudio
             tapInputListener.response      = ExtensionMethods.EmptyMethod;
 
 			level_information_text.text = "Tap to Start";
+
+			rect_scope_background.sizeDelta = new Vector2( Screen.width, Screen.height );
+		}
+#endregion
+
+#region API
+        public void OnScopeOn()
+        {
+			recycledSequence.Kill();
+
+			rect_scope_crosshair.eulerAngles = Vector3.zero;
+			rect_scope_crosshair.localScale  = Vector3.one;
+			rect_scope_mask.localScale       = Vector3.one;
+
+			parent_level_progress.gameObject.SetActive( false );
+			parent_scope.SetActive( true );
+		}
+
+        public void OnScopeOff()
+        {
+			parent_level_progress.gameObject.SetActive( true );
+			parent_scope.SetActive( false );
         }
+
+        public void OnScopeShoot()
+        {
+			var duration_on = GameSettings.Instance.ui_crosshair_shoot_duration_on;
+			var ease_on     = GameSettings.Instance.ui_crosshair_shoot_ease_on;
+
+			var duration_off = GameSettings.Instance.ui_crosshair_shoot_duration_off;
+			var ease_off = GameSettings.Instance.ui_crosshair_shoot_ease_off;
+
+			var sequence = recycledSequence.Recycle();
+			sequence.Append( rect_scope_crosshair.DOScale(
+				GameSettings.Instance.ui_crosshair_shoot_scale, duration_on )
+				.SetEase( ease_on ) );
+ 			sequence.Join( rect_scope_mask.DOScale(
+				GameSettings.Instance.ui_crosshair_shoot_scale, duration_on )
+				.SetEase( ease_on ) );
+			sequence.Join( rect_scope_crosshair.DORotate(
+				GameSettings.Instance.ui_crosshair_shoot_rotation * Vector3.one, duration_on )
+				.SetEase( ease_on ) );
+			sequence.Append( rect_scope_crosshair.DOScale(
+				1, duration_off )
+				.SetEase( ease_off ) );
+			sequence.Join( rect_scope_mask.DOScale(
+				1, duration_off )
+				.SetEase( ease_off ) );
+			sequence.Join( rect_scope_crosshair.DORotate(
+				Vector3.one, duration_off )
+				.SetEase( ease_off ) );
+		}
 #endregion
 
 #region Implementation
@@ -118,7 +178,7 @@ namespace FFStudio
             var sequence = DOTween.Sequence();
 
 			// Tween tween = null;
-			level_information_text.text = "Level Failed \n\n Tap to Continue";
+			level_information_text.text = "Try Again \n\n Tap to Continue";
 
 			sequence.Append( foreGroundImage.DOFade( 0.5f, GameSettings.Instance.ui_Entity_Fade_TweenDuration ) )
                     // .Append( tween ) // TODO: UIElements tween.

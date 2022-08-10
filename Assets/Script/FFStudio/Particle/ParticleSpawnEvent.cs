@@ -9,15 +9,17 @@ namespace FFStudio
 	{
 		public string particle_alias;
 		public Vector3 particle_spawn_point;
+		public Vector3 particle_spawn_rotation;
 		public float particle_spawn_size;
 		[ HideInInspector ] public Transform particle_spawn_parent;
 
-		public void Raise( string alias, Vector3 position, Transform parent = null, float size = 1f )
+		public void Raise( string alias, Vector3 position, Vector3 rotation, Transform parent = null, float size = 1f )
 		{
-			particle_alias        = alias;
-			particle_spawn_size   = size;
-			particle_spawn_point  = position;
-			particle_spawn_parent = parent;
+			particle_alias          = alias;
+			particle_spawn_size     = size;
+			particle_spawn_point    = position;
+			particle_spawn_parent   = parent;
+			particle_spawn_rotation = rotation;
 
 			Raise();
 		}

@@ -11,14 +11,21 @@ using Sirenix.OdinInspector;
 public class CameraController : MonoBehaviour
 {
 #region Fields
-  [ Title( "Components" ) ]
+  [ Title( "Setup" ) ]
     [ SerializeField ] Camera _camera;
+	[ SerializeField ] CameraZoomNotifier notif_camera_zoom;
+	[ SerializeField ] CameraRotationNotifier notif_camera_rotation;
 #endregion
 
 #region Properties
 #endregion
 
 #region Unity API
+	private void Awake()
+	{
+		notif_camera_zoom.sharedValue     = _camera.fieldOfView;
+		notif_camera_rotation.sharedValue = GameSettings.Instance.camera_rotation_default;
+	}
 #endregion
 
 #region API

@@ -48,6 +48,18 @@ namespace FFStudio
 			itemDictionary.Remove( key );
 		}
 
+		public void AddToBoth( TKey key, TValue value )
+		{
+			AddDictionary( key, value );
+			AddList( value );
+		}
+
+		public void RemoveFromBoth( TKey key, TValue value )
+		{
+			RemoveDictionary( key );
+			RemoveList( value );
+		}
+
 		[ Button ]
 		public void ClearSet()
 		{

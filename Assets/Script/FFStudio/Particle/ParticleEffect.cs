@@ -62,8 +62,9 @@ namespace FFStudio
 		{
 			gameObject.SetActive( true );
 			
-			transform.position   = particleEvent.particle_spawn_point;
-			transform.localScale = particle_start_size * particleEvent.particle_spawn_size;
+			transform.position    = particleEvent.particle_spawn_point;
+			transform.localScale  = particle_start_size * particleEvent.particle_spawn_size;
+			transform.eulerAngles = particleEvent.particle_spawn_rotation;
 
 			if( particleEvent.particle_spawn_parent != null )
 				transform.SetParent( particleEvent.particle_spawn_parent );

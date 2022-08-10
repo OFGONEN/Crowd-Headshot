@@ -14,6 +14,7 @@ namespace FFStudio
 	[ Title( "Setup" ) ]
 		[ ValueDropdown( "SceneList" ), LabelText( "Scene Index" ) ] public int scene_index;
         [ LabelText( "Override As Active Scene" ) ] public bool scene_overrideAsActiveScene;
+        [ LabelText( "Boss Power Level" ) ] public int boss_power_level;
 
 #if UNITY_EDITOR
 		static IEnumerable SceneList()
