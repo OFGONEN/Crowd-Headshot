@@ -91,8 +91,6 @@ public class Enemy : MonoBehaviour
 
 	public void OnPlayerPowerChange()
 	{
-		FFLogger.Log( "Enemy Power: " + enemy_power + " Player Power: " + notif_player_power.sharedValue );
-		
 		if( notif_player_power.sharedValue >= enemy_power )
 			enemy_text_power.color = GameSettings.Instance.enemy_power_color_weak;
 		else
