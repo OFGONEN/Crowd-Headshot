@@ -70,15 +70,13 @@ namespace FFStudio
             tapInputListener.response      = ExtensionMethods.EmptyMethod;
 
 			level_information_text.text = "Tap to Start";
-
-			rect_scope_background.sizeDelta = new Vector2( Screen.width, Screen.height );
 		}
 #endregion
 
 #region API
         public void OnScopeOn()
         {
-			recycledSequence.Kill();
+			rect_scope_background.sizeDelta = Vector2.one * 10000;
 
 			rect_scope_crosshair.eulerAngles = Vector3.zero;
 			rect_scope_crosshair.localScale  = Vector3.one;
