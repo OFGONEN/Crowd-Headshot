@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a385bd3b4416492409284c9a366cb52a, type: 3}
   m_Name: game_settings
   m_EditorClassIdentifier: 
-  camera_zoom_in: 30
+  camera_zoom_in: 50
   camera_zoom_out: 60
-  camera_zoom_speed: 30
+  camera_zoom_speed: 60
   camera_zoom_ease: 1
   camera_rotation_speed: 30
-  camera_rotation_duration: 0.75
+  camera_rotation_duration: 0.2
   camera_rotation_clamp_horizontal: {x: -30, y: 30}
   camera_rotation_clamp_vertical: {x: -30, y: 30}
   camera_rotation_default: {x: 23.466, y: 0, z: 0}
@@ -29,8 +29,8 @@ MonoBehaviour:
   enemy_power_color_weak: {r: 0.034214735, g: 1, b: 0, a: 1}
   ui_crosshair_shoot_scale: 1.2
   ui_crosshair_shoot_rotation: 10
-  ui_crosshair_shoot_duration_on: 0.75
-  ui_crosshair_shoot_duration_off: 0.35
+  ui_crosshair_shoot_duration_on: 0.1
+  ui_crosshair_shoot_duration_off: 0.05
   ui_crosshair_shoot_ease_on: 1
   ui_crosshair_shoot_ease_off: 1
   game_play_axis: {x: 0, y: 0, z: 1}
