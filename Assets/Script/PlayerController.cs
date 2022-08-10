@@ -64,11 +64,6 @@ public class PlayerController : MonoBehaviour
 		onFingerDown = FingerDown;
 	}
 
-    public void OnLevelFinished()
-    {
-		EmptyDelegates();
-	}
-
     public void OnFingerUp()
     {
 		onFingerUp();
