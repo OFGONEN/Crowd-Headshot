@@ -32,6 +32,7 @@ namespace FFStudio
         public RectTransform rect_scope_mask;
         public RectTransform rect_scope_background;
         public RectTransform rect_scope_crosshair;
+        public GameObject parent_scope_hit;
 
     [ Title( "Fired Events" ) ]
         public GameEvent levelRevealedEvent;
@@ -39,6 +40,7 @@ namespace FFStudio
         public GameEvent resetLevelEvent;
         public GameEvent event_level_started;
         public ElephantLevelEvent elephantLevelEvent;
+        public SharedBool shared_hit;
     
     RecycledSequence recycledSequence = new RecycledSequence();
 #endregion
@@ -101,6 +103,8 @@ namespace FFStudio
 			var ease_off = GameSettings.Instance.ui_crosshair_shoot_ease_off;
 
 			var sequence = recycledSequence.Recycle();
+			if( shared_hit.sharedValue )
+				sequence.AppendCallback( EnableCrosshairHit );
 			sequence.Append( rect_scope_crosshair.DOScale(
 				GameSettings.Instance.ui_crosshair_shoot_scale, duration_on )
 				.SetEase( ease_on ) );
@@ -110,6 +114,7 @@ namespace FFStudio
 			sequence.Join( rect_scope_crosshair.DORotate(
 				GameSettings.Instance.ui_crosshair_shoot_rotation * Vector3.one, duration_on )
 				.SetEase( ease_on ) );
+			sequence.AppendCallback( DisableCrosshairHit );
 			sequence.Append( rect_scope_crosshair.DOScale(
 				1, duration_off )
 				.SetEase( ease_off ) );
@@ -232,6 +237,16 @@ namespace FFStudio
 			sequence.Append( foreGroundImage.DOFade( 1f, GameSettings.Instance.ui_Entity_Fade_TweenDuration ) )
 			        .Join( level_information_text_Scale.DoScale_Target( Vector3.zero, GameSettings.Instance.ui_Entity_Scale_TweenDuration ) )
 			        .AppendCallback( resetLevelEvent.Raise );
+		}
+
+		void EnableCrosshairHit()
+		{
+			parent_scope_hit.SetActive( enabled );
+		}
+
+		void DisableCrosshairHit()
+		{
+			parent_scope_hit.SetActive( false );
 		}
 #endregion
     }
