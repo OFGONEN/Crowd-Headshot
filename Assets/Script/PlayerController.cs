@@ -121,6 +121,12 @@ public class PlayerController : MonoBehaviour
 					enemy.Die();
 					notif_player_power.SharedValue += enemyPower;
 
+					if( triggerListener.tag == "Head" )
+					{
+						event_particle.Raise( "hit_head", hitInfo.point, Vector3.zero );
+						FFLogger.Log( "HeadShot" );
+					}
+
 					if( enemy.IsBoss )
 					{
 						var sequence = recycledSequence.Recycle();
