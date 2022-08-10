@@ -14,6 +14,7 @@ namespace FFStudio
 
         [ Header( "Level Releated" ) ]
         public SharedFloatNotifier levelProgress;
+	    [ SerializeField ] SharedFloatNotifier notif_vignette_intensity;
 #endregion
 
 #region UnityAPI
@@ -24,6 +25,7 @@ namespace FFStudio
         public void LevelLoadedResponse()
         {
 			levelProgress.SetValue_NotifyAlways( 0 );
+			notif_vignette_intensity.SetValue_NotifyAlways( 0 );
 
 			var levelData = CurrentLevelData.Instance.levelData;
             // Set Active Scene.
