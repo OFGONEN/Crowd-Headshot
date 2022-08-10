@@ -20,6 +20,7 @@ namespace FFStudio
 		void OnEnable()
 		{
 			sharedDataNotifier.Subscribe( OnSharedDataChange );
+			OnSharedDataChange();
 		}
 
 		void OnDisable()
