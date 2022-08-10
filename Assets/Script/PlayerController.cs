@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 	[ SerializeField ] GameEvent event_scope_on;
 	[ SerializeField ] GameEvent event_scope_shoot;
 	[ SerializeField ] GameEvent event_scope_off;
+	[ SerializeField ] GameEvent event_camera_shake;
 
   [ Title( "Components" ) ]
 	[ SerializeField ] Animator player_animator;
@@ -229,14 +230,20 @@ public class PlayerController : MonoBehaviour
 
 	void LevelFailed()
 	{
+		var zoomOutDuration = Mathf.Max( GameSettings.Instance.game_vignette_duration, GameSettings.Instance.ui_crosshair_shoot_duration_on + GameSettings.Instance.ui_crosshair_shoot_duration_off );
+
 		var sequence = recycledSequence.Recycle();
+		sequence.AppendCallback( event_scope_shoot.Raise );
+		sequence.AppendCallback( event_camera_shake.Raise );
+		sequence.Join( DOTween.To( GetVignette, SetVignette,
+			GameSettings.Instance.game_vignette_value, GameSettings.Instance.game_vignette_duration ).SetEase( GameSettings.Instance.game_vignette_ease ) );
+		sequence.AppendInterval( zoomOutDuration );
 		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
 		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
 		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.camera_rotation_duration, notif_camera_zoom.CurrentDuration_ZoomOut() ) );
-		sequence.Join( DOTween.To( GetVignette, SetVignette,
-			GameSettings.Instance.game_vignette_value, GameSettings.Instance.game_vignette_duration ).SetEase( GameSettings.Instance.game_vignette_ease ) );
 		sequence.AppendCallback( event_scope_off.Raise );
-		sequence.AppendInterval( GameSettings.Instance.game_vignette_duration );
+		sequence.AppendCallback( PlayerGunDown );
+		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
 		sequence.AppendCallback( event_level_failed.Raise );
 	}
 
