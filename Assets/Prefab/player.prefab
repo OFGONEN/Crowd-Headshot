@@ -54,6 +54,7 @@ MonoBehaviour:
   notif_camera_zoom: {fileID: 11400000, guid: f6d48ec12e919a945b5af4c0140b89df, type: 2}
   notif_camera_reference: {fileID: 11400000, guid: 488e798dd6f140e4a84fa7485b885dd3, type: 2}
   notif_vignette_intensity: {fileID: 11400000, guid: 4e7ff7e6270e02547bc2008b2c440444, type: 2}
+  shared_hit: {fileID: 11400000, guid: 4369799f00edd40a19c28de1bb2b0330, type: 2}
   event_particle: {fileID: 11400000, guid: fe240f220ab36cc44923227184f9c2a7, type: 2}
   event_level_completed: {fileID: 11400000, guid: 28d976b368abc004a924d98b1751a17d, type: 2}
   event_level_failed: {fileID: 11400000, guid: ec850936269bc2e47b26cfebd8bdad97, type: 2}

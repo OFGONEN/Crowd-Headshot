@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [ SerializeField ] CameraZoomNotifier notif_camera_zoom;
     [ SerializeField ] SharedReferenceNotifier notif_camera_reference;
 	[ SerializeField ] SharedFloatNotifier notif_vignette_intensity;
+	[ SerializeField ] SharedBool shared_hit;
 
   [ Title( "Fired Events" ) ]
 	[ SerializeField ] ParticleSpawnEvent event_particle;
@@ -120,6 +121,7 @@ public class PlayerController : MonoBehaviour
 				{
 					enemy.Die();
 					notif_player_power.SharedValue += enemyPower;
+					shared_hit.sharedValue = true;
 
 					if( triggerListener.tag == "Head" )
 						event_particle.Raise( "hit_head", hitInfo.point, Vector3.zero );
@@ -156,6 +158,8 @@ public class PlayerController : MonoBehaviour
         // Handle delegates
 		onFingerUp   = FingerUp;
 		onFingerDown = ExtensionMethods.EmptyMethod;
+
+		shared_hit.sharedValue = false;
 
 		var sequence = recycledSequence.Recycle( OnZoomedIn );
 		sequence.AppendCallback( PlayerGunUp );
