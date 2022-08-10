@@ -38,6 +38,11 @@ public class CameraController : MonoBehaviour
     {
 		transform.localEulerAngles = value;
 	}
+
+	public void OnLevelFailed()
+	{
+		_camera.DOShakeRotation( GameSettings.Instance.camera_shake_duration, GameSettings.Instance.camera_shake_strenght );
+	}
 #endregion
 
 #region Implementation
