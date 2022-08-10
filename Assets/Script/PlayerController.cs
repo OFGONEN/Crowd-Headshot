@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
   [ Title( "Components" ) ]
 	[ SerializeField ] Animator player_animator;
+	[ SerializeField ] ParticleSystem particle_speed_trail;
 
     Transform camera_transform;
 	int player_layerMask;
@@ -133,10 +134,7 @@ public class PlayerController : MonoBehaviour
 					}
 					else
 					{
-						PlayerScopeOffSequence();
-
-						// Teleport to enemy position
-						transform.position = enemy.TeleportPosition.SetY( 0 );
+						PlayerKilledEnemySequence( enemy.TeleportPosition.SetY( 0 ) );
 					}
 				}
 				else
@@ -209,6 +207,24 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendCallback( event_scope_off.Raise );
 		sequence.AppendCallback( PlayerGunDown );
 		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
+	}
+
+	void PlayerKilledEnemySequence( Vector3 position )
+	{
+		var duration = Vector3.Distance( transform.position, position ) / GameSettings.Instance.player_move_speed;
+		var sequence = recycledSequence.Recycle( OnZoomedOut );
+		sequence.AppendCallback( event_scope_shoot.Raise );
+		sequence.AppendInterval( GameSettings.Instance.ui_crosshair_shoot_duration_on + GameSettings.Instance.ui_crosshair_shoot_duration_off );
+		sequence.AppendCallback( notif_camera_zoom.OnZoomOut );
+		sequence.AppendInterval( notif_camera_zoom.CurrentDuration_ZoomOut() );
+		sequence.AppendCallback( event_scope_off.Raise );
+		sequence.AppendCallback( PlayerGunDown );
+		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
+		sequence.AppendCallback( () => particle_speed_trail.Play( true ) );
+		sequence.Append( transform.DOMove( position, duration ).SetEase( GameSettings.Instance.player_move_ease ) );
+		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
+		sequence.AppendCallback( () => particle_speed_trail.Stop( true, ParticleSystemStopBehavior.StopEmitting ) );
+		sequence.AppendInterval( GameSettings.Instance.camera_rotation_duration );
 	}
 
 	void LevelFailed()

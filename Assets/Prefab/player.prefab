@@ -61,6 +61,7 @@ MonoBehaviour:
   event_scope_shoot: {fileID: 11400000, guid: f6ab31204b116c448822c1d50b733880, type: 2}
   event_scope_off: {fileID: 11400000, guid: 363f3b99d6b3f1843befc2210a213e88, type: 2}
   player_animator: {fileID: 2675533649487610331}
+  particle_speed_trail: {fileID: 6173505701499060866}
 --- !u!1 &3743582621658394401
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,11 +406,20 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
+      propertyPath: prewarm
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f683447c6570076418716c53d120168a, type: 3}
+--- !u!198 &6173505701499060866 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 198893393215934218, guid: f683447c6570076418716c53d120168a, type: 3}
+  m_PrefabInstance: {fileID: 6300024360274857352}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6304631291004888792 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4681753433549648, guid: f683447c6570076418716c53d120168a, type: 3}
