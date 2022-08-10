@@ -35,6 +35,7 @@ namespace FFStudio
         [ LabelText( "Enemy Turn Animation Duration" ) ] public float enemy_animation_turn_duration = 1;
         [ LabelText( "Enemy Power Color Strong" ) ] public Color enemy_power_color_strong;
         [ LabelText( "Enemy Power Color Weak" ) ] public Color enemy_power_color_weak;
+        [ LabelText( "Enemy HeadShot particle offset" ) ] public float enemy_particle_offset = 0.2f;
 
     [ Title( "Game UI" ) ]
         [ LabelText( "Crosshair Shoot Scale" ) ] public float ui_crosshair_shoot_scale;

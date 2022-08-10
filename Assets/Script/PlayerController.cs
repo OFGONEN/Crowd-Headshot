@@ -124,7 +124,7 @@ public class PlayerController : MonoBehaviour
 					shared_hit.sharedValue = true;
 
 					if( triggerListener.tag == "Head" )
-						event_particle.Raise( "hit_head", hitInfo.point, Vector3.zero );
+						event_particle.Raise( "hit_head", hitInfo.point + Vector3.up * GameSettings.Instance.enemy_particle_offset, Vector3.zero );
 
 					if( enemy.IsBoss )
 					{

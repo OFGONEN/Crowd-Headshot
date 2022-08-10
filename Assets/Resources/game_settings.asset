@@ -31,6 +31,7 @@ MonoBehaviour:
   enemy_animation_turn_duration: 1
   enemy_power_color_strong: {r: 1, g: 0, b: 0, a: 1}
   enemy_power_color_weak: {r: 0.034214735, g: 1, b: 0, a: 1}
+  enemy_particle_offset: 0.5
   ui_crosshair_shoot_scale: 1.2
   ui_crosshair_shoot_rotation: 10
   ui_crosshair_shoot_duration_on: 0.1
