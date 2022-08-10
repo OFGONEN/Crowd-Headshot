@@ -22,6 +22,8 @@ namespace FFStudio
         [ LabelText( "Rotation Clamp Vertical" ) ] public Vector2 camera_rotation_clamp_vertical;
         [ LabelText( "Default Rotation" ) ] public Vector3 camera_rotation_default;
         [ LabelText( "Follow Speed (Z)" ), SuffixLabel( "units/seconds" ), Min( 0 ) ] public float camera_follow_speed_depth = 2.8f;
+        [ LabelText( "Shake Strenght" ) ] public float camera_shake_strenght = 15f;
+        [ LabelText( "Shake Duration" ) ] public float camera_shake_duration = 0.35f;
     
     [ Title( "Player" ) ]
         [ LabelText( "Player Max Shoot Distance" ) ] public float player_shoot_maxDistance = 200f;
