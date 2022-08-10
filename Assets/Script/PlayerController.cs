@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
 						PlayerScopeOffSequence();
 
 						// Teleport to enemy position
-						transform.position = enemy.TeleportPosition;
+						transform.position = enemy.TeleportPosition.SetY( 0 );
 					}
 				}
 				else
