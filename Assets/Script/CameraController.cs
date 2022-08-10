@@ -14,6 +14,7 @@ public class CameraController : MonoBehaviour
   [ Title( "Setup" ) ]
     [ SerializeField ] Camera _camera;
 	[ SerializeField ] CameraZoomNotifier notif_camera_zoom;
+	[ SerializeField ] CameraRotationNotifier notif_camera_rotation;
 #endregion
 
 #region Properties
@@ -22,7 +23,8 @@ public class CameraController : MonoBehaviour
 #region Unity API
 	private void Awake()
 	{
-		notif_camera_zoom.sharedValue = _camera.fieldOfView;
+		notif_camera_zoom.sharedValue     = _camera.fieldOfView;
+		notif_camera_rotation.sharedValue = GameSettings.Instance.camera_rotation_default;
 	}
 #endregion
 

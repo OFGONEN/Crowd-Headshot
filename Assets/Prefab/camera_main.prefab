@@ -153,6 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _camera: {fileID: 3747325266785291021}
   notif_camera_zoom: {fileID: 11400000, guid: f6d48ec12e919a945b5af4c0140b89df, type: 2}
+  notif_camera_rotation: {fileID: 11400000, guid: ccb13f01d1c16aa4b9dd4b2fa3de30e8, type: 2}
 --- !u!1 &6164204593847591320
 GameObject:
   m_ObjectHideFlags: 0

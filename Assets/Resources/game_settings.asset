@@ -20,7 +20,7 @@ MonoBehaviour:
   camera_rotation_duration: 0.75
   camera_rotation_clamp_horizontal: {x: -30, y: 30}
   camera_rotation_clamp_vertical: {x: -30, y: 30}
-  camera_rotation_default: {x: 0, y: 0, z: 0}
+  camera_rotation_default: {x: 23.466, y: 0, z: 0}
   camera_follow_speed_depth: 2.8
   player_shoot_maxDistance: 200
   player_aim_duration: 0.1
