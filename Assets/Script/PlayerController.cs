@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
 
   [ Title( "Components" ) ]
 	[ SerializeField ] Animator player_animator;
+	[ SerializeField ] MeshFilter player_gun_mesh;
 	[ SerializeField ] ParticleSystem particle_speed_trail;
 
     Transform camera_transform;
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
     {
 		// Set player power to 1
 		notif_player_power.SetValue_NotifyAlways( 1 );
+		player_gun_mesh.mesh = CurrentLevelData.Instance.levelData.gun_data[ 0 ].gun_mesh;
 
 		EmptyDelegates();
 		player_layerMask = LayerMask.GetMask( "Enemy_Combat", "Boss_Combat", "Ground" );
@@ -81,9 +83,29 @@ public class PlayerController : MonoBehaviour
     {
 		onFingerDrag( gameEvent.eventValue );
 	}
+
+	public void OnPlayerPowerChange( float value )
+	{
+		var gunData = CurrentLevelData.Instance.levelData.gun_data;
+
+		for( var i = gunData.Length - 1; i >= 0; i-- )
+		{
+			if( notif_player_power.sharedValue >= gunData[ i ].gun_power )
+			{
+				ChangeGun( i );
+				break;
+			}
+		}
+	}
 #endregion
 
 #region Implementation
+	void ChangeGun( int index )
+	{
+		player_gun_mesh.mesh = CurrentLevelData.Instance.levelData.gun_data[ index ].gun_mesh;
+		event_particle.Raise( "gun_change", player_gun_mesh.transform.position, Vector3.zero);
+	}
+
     void FingerUp()
     {
 		EmptyDelegates();
@@ -126,6 +148,7 @@ public class PlayerController : MonoBehaviour
 						ForceMode.Impulse );
 
 					notif_player_power.SharedValue += enemyPower;
+					OnPlayerPowerChange( notif_player_power.sharedValue );
 					shared_hit.sharedValue = true;
 
 					if( triggerListener.tag == "Head" )
@@ -262,7 +285,7 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
 		sequence.AppendCallback( event_level_failed.Raise );
 	}
-
+	
 	float GetVignette()
 	{
 		return notif_vignette_intensity.sharedValue;

@@ -63,6 +63,7 @@ MonoBehaviour:
   event_scope_off: {fileID: 11400000, guid: 363f3b99d6b3f1843befc2210a213e88, type: 2}
   event_camera_shake: {fileID: 11400000, guid: ebba9ea70adfa4655ad8ab6fd5ec55a7, type: 2}
   player_animator: {fileID: 2675533649487610331}
+  player_gun_mesh: {fileID: 6329296668663940947}
   particle_speed_trail: {fileID: 6173505701499060866}
 --- !u!1 &3743582621658394401
 GameObject:
@@ -345,6 +346,11 @@ Transform:
 --- !u!95 &2675533649487610331 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 3435828253547034985, guid: 3438e84a805f6314e97a7d99b667f153, type: 3}
+  m_PrefabInstance: {fileID: 761077801884039346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!33 &6329296668663940947 stripped
+MeshFilter:
+  m_CorrespondingSourceObject: {fileID: 6726629565151363041, guid: 3438e84a805f6314e97a7d99b667f153, type: 3}
   m_PrefabInstance: {fileID: 761077801884039346}
   m_PrefabAsset: {fileID: 0}
 --- !u!23 &8084764527995384729 stripped
