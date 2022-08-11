@@ -14,16 +14,19 @@ namespace FFStudio
 
 		public Component AttachedComponent => attachedComponent;
 		public Collider AttachedCollider => attachedCollider;
+		public Rigidbody AttachedRigidbody => attachedRigidbody;
 		
 		public UnityEvent< CallbackArgumentType > unityEvent;
 
 		Collider attachedCollider;
+		Rigidbody attachedRigidbody;
 #endregion
 
 #region UnityAPI
 		void Awake()
 		{
-			attachedCollider = GetComponent< Collider >();
+			attachedCollider  = GetComponent< Collider >();
+			attachedRigidbody = GetComponent< Rigidbody >();
 		}
 #endregion
 
