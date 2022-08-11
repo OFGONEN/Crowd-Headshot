@@ -28,6 +28,7 @@ public class Enemy : MonoBehaviour
     [ SerializeField ] TextMeshProUGUI enemy_text_power;
     [ SerializeField ] Animator enemy_animator;
 	[ SerializeField ] Collider[] enemy_collider;
+	[ SerializeField ] Rigidbody[] enemy_rigidbody;
 
 	public bool IsBoss => enemy_is_boss;
 	public Vector3 TeleportPosition => enemy_gfx_transform.position;
@@ -149,6 +150,12 @@ public class Enemy : MonoBehaviour
 
 #region Editor Only
 #if UNITY_EDITOR
+	[ Button() ]
+	public void CacheRigidbodyAndColliders()
+	{
+		enemy_collider  = GetComponentsInChildren< Collider >();
+		enemy_rigidbody = GetComponentsInChildren< Rigidbody >();
+	}
 #endif
 #endregion
 }
