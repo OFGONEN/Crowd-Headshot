@@ -353,9 +353,9 @@ MonoBehaviour:
   enemy_is_walking: 0
   enemy_walking_right: 0
   enemy_walking_speed: 0
-  enemy_gfx_transform: {fileID: 0}
+  enemy_gfx_transform: {fileID: 483637189297742152}
   enemy_text_power: {fileID: 3927787895003246368}
-  enemy_animator: {fileID: 0}
+  enemy_animator: {fileID: 1663466506545021339}
   enemy_collider:
   - {fileID: 2302302321879942667}
   - {fileID: 4649523332451814394}
