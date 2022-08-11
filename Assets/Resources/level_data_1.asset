@@ -14,3 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene_index: 1
   scene_overrideAsActiveScene: 0
+  boss_power_level: 0
+  gun_data:
+  - gun_power: 0
+    gun_mesh: {fileID: 4106691986641640505, guid: 094ee81b80250614c8600b0621d029b4, type: 3}

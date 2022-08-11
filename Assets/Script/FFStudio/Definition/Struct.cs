@@ -204,4 +204,11 @@ namespace FFStudio
 		public string parameter_name;
 		public int parameter_max;
 	}
+
+	[ Serializable ]
+	public struct GunData
+	{
+		public float gun_power;
+		public Mesh gun_mesh;
+	}
 }
