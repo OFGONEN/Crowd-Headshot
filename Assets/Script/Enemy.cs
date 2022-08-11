@@ -53,6 +53,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
 		ToggleColliders( false );
+		ToggleRigidbodies( true );
 
 		enemy_position = transform.position;
 
@@ -87,6 +88,7 @@ public class Enemy : MonoBehaviour
 	public void OnLevelStart()
 	{
 		ToggleColliders( true );
+		ToggleRigidbodies( true );
 		OnPlayerPowerChange();
 	}
 
@@ -101,11 +103,12 @@ public class Enemy : MonoBehaviour
 	public void Die()
 	{
 		recycledSequence.Kill();
-		ToggleColliders( false );
+
+		enemy_animator.enabled = false;
 		enemy_text_power.gameObject.SetActive( false );
 
-		enemy_animator.SetTrigger( "die" );
-
+		ToggleColliders( false );
+		ToggleRigidbodies( false );
 	}
 #endregion
 
@@ -144,7 +147,13 @@ public class Enemy : MonoBehaviour
 	void ToggleColliders( bool value )
 	{
 		foreach( var collider in enemy_collider )
-			collider.enabled = value;
+			collider.isTrigger = value;
+	}
+
+	void ToggleRigidbodies( bool value )
+	{
+		foreach( var rigidbody in enemy_rigidbody )
+			rigidbody.isKinematic = value;
 	}
 #endregion
 
