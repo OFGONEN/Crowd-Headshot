@@ -48,6 +48,7 @@ namespace FFStudio
 
     [ Title( "Game" ) ]
         [ LabelText( "Game-Play Axis" ) ] public Vector3 game_play_axis;
+        [ LabelText( "Time Scale On Headshot" ) ] public float game_timeScale_headshot = 0.5f;
         [ LabelText( "Vignette Effect Value" ) ] public float game_vignette_value;
         [ LabelText( "Vignette Effect Duration" ) ] public float game_vignette_duration;
         [ LabelText( "Vignette Effect Ease" ) ] public Ease game_vignette_ease;

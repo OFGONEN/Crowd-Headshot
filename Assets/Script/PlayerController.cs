@@ -129,7 +129,11 @@ public class PlayerController : MonoBehaviour
 					shared_hit.sharedValue = true;
 
 					if( triggerListener.tag == "Head" )
+					{
 						event_particle.Raise( "hit_head", hitInfo.point + Vector3.up * GameSettings.Instance.enemy_particle_offset, Vector3.zero );
+						Time.timeScale = GameSettings.Instance.game_timeScale_headshot;
+						DOVirtual.DelayedCall( GameSettings.Instance.ui_crosshair_shoot_duration_on, () => Time.timeScale = 1, true );
+					}
 
 					if( enemy.IsBoss )
 					{

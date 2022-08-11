@@ -33,13 +33,14 @@ MonoBehaviour:
   enemy_power_color_weak: {r: 0.034214735, g: 1, b: 0, a: 1}
   enemy_particle_offset: 0.5
   enemy_hit_force: 3
-  ui_crosshair_shoot_scale: 1.2
+  ui_crosshair_shoot_scale: 1.5
   ui_crosshair_shoot_rotation: 10
   ui_crosshair_shoot_duration_on: 0.1
   ui_crosshair_shoot_duration_off: 0.05
   ui_crosshair_shoot_ease_on: 1
   ui_crosshair_shoot_ease_off: 1
   game_play_axis: {x: 0, y: 0, z: 1}
+  game_timeScale_headshot: 0.5
   game_vignette_value: 0.35
   game_vignette_duration: 0.65
   game_vignette_ease: 9
