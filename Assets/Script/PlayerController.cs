@@ -120,6 +120,11 @@ public class PlayerController : MonoBehaviour
 				if( notif_player_power.sharedValue >= enemyPower )
 				{
 					enemy.Die();
+
+					triggerListener.AttachedRigidbody.AddForce( 
+						( hitInfo.point - transform.position ).normalized * GameSettings.Instance.enemy_hit_force, 
+						ForceMode.Impulse );
+
 					notif_player_power.SharedValue += enemyPower;
 					shared_hit.sharedValue = true;
 
