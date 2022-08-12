@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2151213726215931987}
   - component: {fileID: 6371086261928421254}
+  - component: {fileID: 8381632725763673880}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -65,6 +66,20 @@ MonoBehaviour:
   player_animator: {fileID: 2675533649487610331}
   player_gun_mesh: {fileID: 6329296668663940947}
   particle_speed_trail: {fileID: 6173505701499060866}
+--- !u!114 &8381632725763673880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3678987380930136168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a8b9286af946534c832e5352b9db9e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedReferenceProperty: {fileID: 11400000, guid: e351198b3f17ee448b0fa83934e22a50, type: 2}
+  referenceComponent: {fileID: 2151213726215931987}
 --- !u!1 &3743582621658394401
 GameObject:
   m_ObjectHideFlags: 0
