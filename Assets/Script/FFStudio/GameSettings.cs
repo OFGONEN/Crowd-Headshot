@@ -38,6 +38,11 @@ namespace FFStudio
         [ LabelText( "Enemy HeadShot particle offset" ) ] public float enemy_particle_offset = 0.2f;
         [ LabelText( "Enemy Hit Force" ) ] public float enemy_hit_force = 5;
 
+    [ Title( "Loot" ) ]
+        [ LabelText( "Loot Spawn Radius" ) ] public float loot_spawn_radius = 1f;
+        [ LabelText( "Loot Spawn Jump Power" ) ] public float loot_spawn_jump_power = 1f;
+        [ LabelText( "Loot Spawn Jump Duration" ) ] public float loot_spawn_jump_duration = 0.35f;
+
     [ Title( "Game UI" ) ]
         [ LabelText( "Crosshair Shoot Scale" ) ] public float ui_crosshair_shoot_scale;
         [ LabelText( "Crosshair Shoot Rotation" ) ] public float ui_crosshair_shoot_rotation;
