@@ -28,6 +28,8 @@ public class PowerLoot : MonoBehaviour
 #region API
     public void Spawm( Vector3 spawnPoint )
     {
+		gameObject.SetActive( true );
+
 		transform.position = spawnPoint;
 		var jumpPoint = spawnPoint + Random.insideUnitCircle.ConvertV3_Z() * GameSettings.Instance.loot_spawn_radius;
 
