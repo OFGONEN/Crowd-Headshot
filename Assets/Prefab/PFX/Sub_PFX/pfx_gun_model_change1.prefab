@@ -79,7 +79,7 @@ GameObject:
   - component: {fileID: 19825358}
   - component: {fileID: 19952246}
   m_Layer: 0
-  m_Name: pfx_gun_model_change
+  m_Name: pfx_gun_model_change1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
