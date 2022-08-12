@@ -348,6 +348,7 @@ MonoBehaviour:
   shared_level_position_left: {fileID: 11400000, guid: 1cc197194609e4fc6bbb3cde299e704d, type: 2}
   shared_level_position_right: {fileID: 11400000, guid: 672c60e3478ec43d8822d457aa366c17, type: 2}
   notif_player_power: {fileID: 11400000, guid: caef4e6bb3b3c654bba9610596e9627c, type: 2}
+  pool_loot_power: {fileID: 11400000, guid: bb774d4bfddfde74b968e3bab8f46bc1, type: 2}
   enemy_power: 1
   enemy_is_boss: 0
   enemy_is_walking: 0

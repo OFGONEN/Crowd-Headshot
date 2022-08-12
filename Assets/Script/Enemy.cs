@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [ SerializeField ] SharedVector3 shared_level_position_left;
     [ SerializeField ] SharedVector3 shared_level_position_right;
     [ SerializeField ] SharedFloatNotifier notif_player_power;
+    [ SerializeField ] Pool_PowerLoot pool_loot_power;
 
   [ Title( "Setup" ) ]
     [ SerializeField ] int enemy_power;
@@ -109,6 +110,8 @@ public class Enemy : MonoBehaviour
 
 		ToggleColliders( false );
 		ToggleRigidbodies( false );
+
+		pool_loot_power.Spawn( enemy_power, transform.position );
 	}
 #endregion
 
