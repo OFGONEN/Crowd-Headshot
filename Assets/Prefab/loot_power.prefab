@@ -127,6 +127,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8402941523963263961}
+  - {fileID: 2176383570717977543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -142,6 +143,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b630a4a98191346aacec8351c085b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shared_level_position_left: {fileID: 11400000, guid: 1cc197194609e4fc6bbb3cde299e704d, type: 2}
-  shared_level_position_right: {fileID: 11400000, guid: 672c60e3478ec43d8822d457aa366c17, type: 2}
+  notif_player_power: {fileID: 11400000, guid: caef4e6bb3b3c654bba9610596e9627c, type: 2}
+  notif_player_transform: {fileID: 11400000, guid: e351198b3f17ee448b0fa83934e22a50, type: 2}
   pool_loot_power: {fileID: 11400000, guid: bb774d4bfddfde74b968e3bab8f46bc1, type: 2}
+--- !u!1 &8791678193281733248
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2176383570717977543}
+  - component: {fileID: 3899093684990071962}
+  m_Layer: 0
+  m_Name: logic_scope_shoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2176383570717977543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791678193281733248}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5198679163949710082}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3899093684990071962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791678193281733248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 245dc21cc9428744fa28ad2d6ce7d327, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventPairs:
+  - eventListener:
+      gameEvents:
+      - {fileID: 11400000, guid: f6ab31204b116c448822c1d50b733880, type: 2}
+    unityEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6473288386589704903}
+          m_TargetAssemblyTypeName: PowerLoot, Assembly-CSharp
+          m_MethodName: GoTowardsPlayer
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
