@@ -111,7 +111,8 @@ public class Enemy : MonoBehaviour
 		ToggleColliders( false );
 		ToggleRigidbodies( false );
 
-		pool_loot_power.Spawn( enemy_power, transform.position );
+		if( !enemy_is_boss )
+			pool_loot_power.Spawn( enemy_power, transform.position );
 	}
 #endregion
 
