@@ -35,11 +35,14 @@ MonoBehaviour:
   enemy_hit_force: 3
   loot_spawn_radius: 1
   loot_spawn_jump_power: 1
-  loot_spawn_jump_duration: 0.35
+  loot_spawn_jump_duration: 0.3
+  loot_spawn_jump_ease: 1
+  loot_spawn_travel_duration: 0.35
+  loot_spawn_travel_ease: 1
   ui_crosshair_shoot_scale: 1.5
   ui_crosshair_shoot_rotation: 10
-  ui_crosshair_shoot_duration_on: 0.1
-  ui_crosshair_shoot_duration_off: 0.05
+  ui_crosshair_shoot_duration_on: 0.2
+  ui_crosshair_shoot_duration_off: 0.1
   ui_crosshair_shoot_ease_on: 1
   ui_crosshair_shoot_ease_off: 1
   game_play_axis: {x: 0, y: 0, z: 1}

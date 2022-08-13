@@ -41,7 +41,10 @@ namespace FFStudio
     [ Title( "Loot" ) ]
         [ LabelText( "Loot Spawn Radius" ) ] public float loot_spawn_radius = 1f;
         [ LabelText( "Loot Spawn Jump Power" ) ] public float loot_spawn_jump_power = 1f;
-        [ LabelText( "Loot Spawn Jump Duration" ) ] public float loot_spawn_jump_duration = 0.35f;
+        [ LabelText( "Loot Spawn Jump Duration" ) ] public float loot_spawn_jump_duration = 0.35f; // ui scope on + off
+        [ LabelText( "Loot Spawn Jump Ease" ) ] public Ease loot_spawn_jump_ease;
+        [ LabelText( "Loot Spawn Travel Duration" ) ] public float loot_spawn_travel_duration = 0.35f;
+        [ LabelText( "Loot Spawn Travel Ease" ) ] public Ease loot_spawn_travel_ease;
 
     [ Title( "Game UI" ) ]
         [ LabelText( "Crosshair Shoot Scale" ) ] public float ui_crosshair_shoot_scale;
