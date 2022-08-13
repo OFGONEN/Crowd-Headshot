@@ -259,7 +259,7 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendInterval( notif_camera_zoom.CurrentDuration_ZoomOut() );
 		sequence.AppendCallback( event_scope_off.Raise );
 		sequence.AppendCallback( PlayerGunDown );
-		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
+		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.player_aim_duration, GameSettings.Instance.loot_spawn_travel_duration ) );
 		sequence.AppendCallback( () => particle_speed_trail.Play( true ) );
 		sequence.Append( transform.DOMove( position, duration ).SetEase( GameSettings.Instance.player_move_ease ) );
 		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
