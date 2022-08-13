@@ -31,15 +31,18 @@ public class PlayerController : MonoBehaviour
 	[ SerializeField ] Animator player_animator;
 	[ SerializeField ] MeshFilter player_gun_mesh;
 	[ SerializeField ] ParticleSystem particle_speed_trail;
+	[ SerializeField ] ParticleSystem particle_gun_change;
 
     Transform camera_transform;
 	int player_layerMask;
+	int player_gun_index;
 
 	UnityMessage onFingerUp;
     UnityMessage onFingerDown;
     Vector2Delegate onFingerDrag;
 
     RecycledSequence recycledSequence = new RecycledSequence();
+    RecycledSequence recycledSequence_GunChange = new RecycledSequence();
 #endregion
 
 #region Properties
@@ -49,11 +52,13 @@ public class PlayerController : MonoBehaviour
 	private void OnDisable()
 	{
 		recycledSequence.Kill();
+		recycledSequence_GunChange.Kill();
 	}
 
     private void Awake()
     {
 		// Set player power to 1
+		player_gun_index = 0;
 		notif_player_power.SetValue_NotifyAlways( 1 );
 		player_gun_mesh.mesh = CurrentLevelData.Instance.levelData.gun_data[ 0 ].gun_mesh;
 
@@ -88,7 +93,7 @@ public class PlayerController : MonoBehaviour
 	{
 		var gunData = CurrentLevelData.Instance.levelData.gun_data;
 
-		for( var i = gunData.Length - 1; i >= 0; i-- )
+		for( var i = player_gun_index + 1; i < gunData.Length; i++ )
 		{
 			if( notif_player_power.sharedValue >= gunData[ i ].gun_power )
 			{
@@ -102,8 +107,28 @@ public class PlayerController : MonoBehaviour
 #region Implementation
 	void ChangeGun( int index )
 	{
+		player_gun_index = index;
+
+		var sequence = recycledSequence_GunChange.Recycle();
+
+		sequence.Append( player_gun_mesh.transform.DOScale(
+			GameSettings.Instance.player_gun_change_shrink_scale,
+			GameSettings.Instance.player_gun_change_shrink_duration )
+			.SetEase( GameSettings.Instance.player_gun_change_shrink_ease )
+		);
+		sequence.AppendCallback( () => ChangeGunMesh( index ) );
+		sequence.Append( player_gun_mesh.transform.DOPunchScale(
+			Vector3.one * GameSettings.Instance.player_gun_change_grow_scale,
+			GameSettings.Instance.player_gun_change_grow_duration )
+			.SetEase( GameSettings.Instance.player_gun_change_grow_ease )
+		);
+	}
+
+	void ChangeGunMesh( int index )
+	{
+		// particle_gun_change.Play( true );
 		player_gun_mesh.mesh = CurrentLevelData.Instance.levelData.gun_data[ index ].gun_mesh;
-		event_particle.Raise( "gun_change", player_gun_mesh.transform.position, Vector3.zero);
+		player_gun_mesh.transform.localScale = Vector3.one * GameSettings.Instance.player_gun_change_default_scale;
 	}
 
     void FingerUp()
@@ -147,8 +172,8 @@ public class PlayerController : MonoBehaviour
 						( hitInfo.point - transform.position ).normalized * GameSettings.Instance.enemy_hit_force, 
 						ForceMode.Impulse );
 
-					notif_player_power.SharedValue += enemyPower;
-					OnPlayerPowerChange( notif_player_power.sharedValue );
+					// notif_player_power.SharedValue += enemyPower;
+					// OnPlayerPowerChange( notif_player_power.sharedValue );
 					shared_hit.sharedValue = true;
 
 					if( triggerListener.tag == "Head" )
