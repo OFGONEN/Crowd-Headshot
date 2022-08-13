@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   notif_player_power: {fileID: 11400000, guid: caef4e6bb3b3c654bba9610596e9627c, type: 2}
-  notif_player_transform: {fileID: 11400000, guid: e351198b3f17ee448b0fa83934e22a50, type: 2}
+  notif_player_transform: {fileID: 11400000, guid: 488e798dd6f140e4a84fa7485b885dd3, type: 2}
   pool_loot_power: {fileID: 11400000, guid: bb774d4bfddfde74b968e3bab8f46bc1, type: 2}
 --- !u!1 &8791678193281733248
 GameObject:
@@ -193,7 +193,7 @@ MonoBehaviour:
   eventPairs:
   - eventListener:
       gameEvents:
-      - {fileID: 11400000, guid: f6ab31204b116c448822c1d50b733880, type: 2}
+      - {fileID: 11400000, guid: 363f3b99d6b3f1843befc2210a213e88, type: 2}
     unityEvent:
       m_PersistentCalls:
         m_Calls:

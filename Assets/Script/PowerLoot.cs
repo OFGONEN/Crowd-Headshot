@@ -31,12 +31,17 @@ public class PowerLoot : MonoBehaviour
 #region API
     public void Spawm( Vector3 spawnPoint )
     {
+		FFLogger.Log( "Spawn: " + Time.frameCount );
 		gameObject.SetActive( true );
 
 		transform.position = spawnPoint;
 		loot_travel_position = spawnPoint + Random.insideUnitCircle.ConvertV3_Z() * GameSettings.Instance.loot_spawn_radius;
 
-		recycledTween.Recycle( transform.DOJump( loot_travel_position, GameSettings.Instance.loot_spawn_jump_power, 1, GameSettings.Instance.loot_spawn_jump_duration ) );
+		recycledTween.Recycle( transform.DOJump(
+			loot_travel_position, GameSettings.Instance.loot_spawn_jump_power, 1,
+			GameSettings.Instance.loot_spawn_jump_duration )
+			.SetEase( GameSettings.Instance.loot_spawn_jump_ease )
+		);
 	}
 
 	public void GoTowardsPlayer()
@@ -46,8 +51,10 @@ public class PowerLoot : MonoBehaviour
 
 		recycledTween.Recycle( 
 			DOTween.To( ReturnProgression, SetProgression, 1,
-				GameSettings.Instance.ui_crosshair_shoot_duration_on + GameSettings.Instance.ui_crosshair_shoot_duration_off )
-				.OnUpdate( OnProgressionUpdate ) , OnProgressionComplete );
+				GameSettings.Instance.loot_spawn_travel_duration )
+				.OnUpdate( OnProgressionUpdate )
+				.SetEase( GameSettings.Instance.loot_spawn_travel_ease), 
+				OnProgressionComplete );
 	}
 #endregion
 
@@ -59,8 +66,8 @@ public class PowerLoot : MonoBehaviour
 
 	void OnProgressionComplete()
 	{
-		FFLogger.Log( "OnProgressionComplete" );
 		notif_player_power.SharedValue += 1;
+		pool_loot_power.ReturnEntity( this );
 	}
 
 	float ReturnProgression()
