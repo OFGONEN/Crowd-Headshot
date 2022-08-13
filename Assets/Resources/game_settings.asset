@@ -28,6 +28,13 @@ MonoBehaviour:
   player_aim_duration: 0.1
   player_move_speed: 100
   player_move_ease: 1
+  player_gun_change_default_scale: 2
+  player_gun_change_shrink_scale: 0.35
+  player_gun_change_shrink_duration: 0.25
+  player_gun_change_shrink_ease: 1
+  player_gun_change_grow_scale: 1.35
+  player_gun_change_grow_duration: 0.15
+  player_gun_change_grow_ease: 1
   enemy_animation_turn_duration: 1
   enemy_power_color_strong: {r: 1, g: 0, b: 0, a: 1}
   enemy_power_color_weak: {r: 0.034214735, g: 1, b: 0, a: 1}

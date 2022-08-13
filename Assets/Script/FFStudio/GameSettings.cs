@@ -31,6 +31,15 @@ namespace FFStudio
         [ LabelText( "Player Move Speed" ) ] public float player_move_speed = 5;
         [ LabelText( "Player Move Ease" ) ] public Ease player_move_ease;
 
+    [ Title( "Player Gun Change" ) ]
+        [ LabelText( "Player Gun Default Scale" ) ] public float player_gun_change_default_scale;
+        [ LabelText( "Player Gun Change Shrink Scale" ) ] public float player_gun_change_shrink_scale;
+        [ LabelText( "Player Gun Change Shrink Duration" ) ] public float player_gun_change_shrink_duration;
+        [ LabelText( "Player Gun Change Shrink Ease" ) ] public Ease player_gun_change_shrink_ease;
+        [ LabelText( "Player Gun Change Grow Scale" ) ] public float player_gun_change_grow_scale;
+        [ LabelText( "Player Gun Change Grow Duration" ) ] public float player_gun_change_grow_duration;
+        [ LabelText( "Player Gun Change Grow Ease" ) ] public Ease player_gun_change_grow_ease;
+
     [ Title( "Enemy" ) ]
         [ LabelText( "Enemy Turn Animation Duration" ) ] public float enemy_animation_turn_duration = 1;
         [ LabelText( "Enemy Power Color Strong" ) ] public Color enemy_power_color_strong;
