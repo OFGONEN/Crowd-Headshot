@@ -31,7 +31,6 @@ public class PowerLoot : MonoBehaviour
 #region API
     public void Spawm( Vector3 spawnPoint )
     {
-		FFLogger.Log( "Spawn: " + Time.frameCount );
 		gameObject.SetActive( true );
 
 		transform.position = spawnPoint;
