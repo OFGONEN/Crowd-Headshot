@@ -20,7 +20,7 @@ MonoBehaviour:
   camera_rotation_duration: 0.2
   camera_rotation_clamp_horizontal: {x: -30, y: 30}
   camera_rotation_clamp_vertical: {x: -30, y: 30}
-  camera_rotation_default: {x: 23.466, y: 0, z: 0}
+  camera_rotation_default: {x: 5, y: 0, z: 0}
   camera_follow_speed_depth: 2.8
   camera_shake_strenght: 15
   camera_shake_duration: 0.35
