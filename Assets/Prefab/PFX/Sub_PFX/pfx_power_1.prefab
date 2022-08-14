@@ -4729,7 +4729,7 @@ GameObject:
   - component: {fileID: 19888532}
   - component: {fileID: 19984166}
   m_Layer: 0
-  m_Name: pfx_power
+  m_Name: pfx_power_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
