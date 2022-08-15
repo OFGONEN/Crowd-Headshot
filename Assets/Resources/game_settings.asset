@@ -18,7 +18,7 @@ MonoBehaviour:
   camera_zoom_ease: 1
   camera_rotation_speed: 27
   camera_rotation_duration: 0.2
-  camera_rotation_clamp_horizontal: {x: -30, y: 30}
+  camera_rotation_clamp_horizontal: {x: -75, y: 75}
   camera_rotation_clamp_vertical: {x: -30, y: 30}
   camera_rotation_default: {x: 5, y: 0, z: 0}
   camera_follow_speed_depth: 2.8
