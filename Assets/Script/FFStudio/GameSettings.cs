@@ -31,11 +31,29 @@ namespace FFStudio
         [ LabelText( "Player Move Speed" ) ] public float player_move_speed = 5;
         [ LabelText( "Player Move Ease" ) ] public Ease player_move_ease;
 
+    [ Title( "Player Gun Change" ) ]
+        [ LabelText( "Player Gun Default Scale" ) ] public float player_gun_change_default_scale;
+        [ LabelText( "Player Gun Change Shrink Scale" ) ] public float player_gun_change_shrink_scale;
+        [ LabelText( "Player Gun Change Shrink Duration" ) ] public float player_gun_change_shrink_duration;
+        [ LabelText( "Player Gun Change Shrink Ease" ) ] public Ease player_gun_change_shrink_ease;
+        [ LabelText( "Player Gun Change Grow Scale" ) ] public float player_gun_change_grow_scale;
+        [ LabelText( "Player Gun Change Grow Duration" ) ] public float player_gun_change_grow_duration;
+        [ LabelText( "Player Gun Change Grow Ease" ) ] public Ease player_gun_change_grow_ease;
+
     [ Title( "Enemy" ) ]
         [ LabelText( "Enemy Turn Animation Duration" ) ] public float enemy_animation_turn_duration = 1;
         [ LabelText( "Enemy Power Color Strong" ) ] public Color enemy_power_color_strong;
         [ LabelText( "Enemy Power Color Weak" ) ] public Color enemy_power_color_weak;
         [ LabelText( "Enemy HeadShot particle offset" ) ] public float enemy_particle_offset = 0.2f;
+        [ LabelText( "Enemy Hit Force" ) ] public float enemy_hit_force = 5;
+
+    [ Title( "Loot" ) ]
+        [ LabelText( "Loot Spawn Radius" ) ] public float loot_spawn_radius = 1f;
+        [ LabelText( "Loot Spawn Jump Power" ) ] public float loot_spawn_jump_power = 1f;
+        [ LabelText( "Loot Spawn Jump Duration" ) ] public float loot_spawn_jump_duration = 0.35f; // ui scope on + off
+        [ LabelText( "Loot Spawn Jump Ease" ) ] public Ease loot_spawn_jump_ease;
+        [ LabelText( "Loot Spawn Travel Duration" ) ] public float loot_spawn_travel_duration = 0.35f;
+        [ LabelText( "Loot Spawn Travel Ease" ) ] public Ease loot_spawn_travel_ease;
 
     [ Title( "Game UI" ) ]
         [ LabelText( "Crosshair Shoot Scale" ) ] public float ui_crosshair_shoot_scale;
@@ -47,6 +65,7 @@ namespace FFStudio
 
     [ Title( "Game" ) ]
         [ LabelText( "Game-Play Axis" ) ] public Vector3 game_play_axis;
+        [ LabelText( "Time Scale On Headshot" ) ] public float game_timeScale_headshot = 0.5f;
         [ LabelText( "Vignette Effect Value" ) ] public float game_vignette_value;
         [ LabelText( "Vignette Effect Duration" ) ] public float game_vignette_duration;
         [ LabelText( "Vignette Effect Ease" ) ] public Ease game_vignette_ease;

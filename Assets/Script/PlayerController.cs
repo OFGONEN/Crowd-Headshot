@@ -29,16 +29,20 @@ public class PlayerController : MonoBehaviour
 
   [ Title( "Components" ) ]
 	[ SerializeField ] Animator player_animator;
+	[ SerializeField ] MeshFilter player_gun_mesh;
 	[ SerializeField ] ParticleSystem particle_speed_trail;
+	[ SerializeField ] ParticleSystem particle_gun_change;
 
     Transform camera_transform;
 	int player_layerMask;
+	int player_gun_index;
 
 	UnityMessage onFingerUp;
     UnityMessage onFingerDown;
     Vector2Delegate onFingerDrag;
 
     RecycledSequence recycledSequence = new RecycledSequence();
+    RecycledSequence recycledSequence_GunChange = new RecycledSequence();
 #endregion
 
 #region Properties
@@ -48,12 +52,15 @@ public class PlayerController : MonoBehaviour
 	private void OnDisable()
 	{
 		recycledSequence.Kill();
+		recycledSequence_GunChange.Kill();
 	}
 
     private void Awake()
     {
 		// Set player power to 1
+		player_gun_index = 0;
 		notif_player_power.SetValue_NotifyAlways( 1 );
+		player_gun_mesh.mesh = CurrentLevelData.Instance.levelData.gun_data[ 0 ].gun_mesh;
 
 		EmptyDelegates();
 		player_layerMask = LayerMask.GetMask( "Enemy_Combat", "Boss_Combat", "Ground" );
@@ -81,9 +88,50 @@ public class PlayerController : MonoBehaviour
     {
 		onFingerDrag( gameEvent.eventValue );
 	}
+
+	public void OnPlayerPowerChange( float value )
+	{
+		var gunData = CurrentLevelData.Instance.levelData.gun_data;
+
+		for( var i = player_gun_index + 1; i < gunData.Length; i++ )
+		{
+			if( notif_player_power.sharedValue >= gunData[ i ].gun_power )
+			{
+				ChangeGun( i );
+				break;
+			}
+		}
+	}
 #endregion
 
 #region Implementation
+	void ChangeGun( int index )
+	{
+		player_gun_index = index;
+
+		var sequence = recycledSequence_GunChange.Recycle();
+
+		sequence.Append( player_gun_mesh.transform.DOScale(
+			GameSettings.Instance.player_gun_change_shrink_scale,
+			GameSettings.Instance.player_gun_change_shrink_duration )
+			.SetEase( GameSettings.Instance.player_gun_change_shrink_ease )
+		);
+		sequence.AppendCallback( () => ChangeGunMesh( index ) );
+		sequence.AppendCallback( particle_gun_change.Play );
+		sequence.Append( player_gun_mesh.transform.DOPunchScale(
+			Vector3.one * GameSettings.Instance.player_gun_change_grow_scale,
+			GameSettings.Instance.player_gun_change_grow_duration )
+			.SetEase( GameSettings.Instance.player_gun_change_grow_ease )
+		);
+	}
+
+	void ChangeGunMesh( int index )
+	{
+		// particle_gun_change.Play( true );
+		player_gun_mesh.mesh = CurrentLevelData.Instance.levelData.gun_data[ index ].gun_mesh;
+		player_gun_mesh.transform.localScale = Vector3.one * GameSettings.Instance.player_gun_change_default_scale;
+	}
+
     void FingerUp()
     {
 		EmptyDelegates();
@@ -120,11 +168,21 @@ public class PlayerController : MonoBehaviour
 				if( notif_player_power.sharedValue >= enemyPower )
 				{
 					enemy.Die();
-					notif_player_power.SharedValue += enemyPower;
+
+					triggerListener.AttachedRigidbody.AddForce( 
+						( hitInfo.point - transform.position ).normalized * GameSettings.Instance.enemy_hit_force, 
+						ForceMode.Impulse );
+
+					// notif_player_power.SharedValue += enemyPower;
+					// OnPlayerPowerChange( notif_player_power.sharedValue );
 					shared_hit.sharedValue = true;
 
 					if( triggerListener.tag == "Head" )
+					{
 						event_particle.Raise( "hit_head", hitInfo.point + Vector3.up * GameSettings.Instance.enemy_particle_offset, Vector3.zero );
+						Time.timeScale = GameSettings.Instance.game_timeScale_headshot;
+						DOVirtual.DelayedCall( GameSettings.Instance.ui_crosshair_shoot_duration_on, () => Time.timeScale = 1, true );
+					}
 
 					if( enemy.IsBoss )
 					{
@@ -227,7 +285,7 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendInterval( notif_camera_zoom.CurrentDuration_ZoomOut() );
 		sequence.AppendCallback( event_scope_off.Raise );
 		sequence.AppendCallback( PlayerGunDown );
-		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
+		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.player_aim_duration, GameSettings.Instance.loot_spawn_travel_duration ) );
 		sequence.AppendCallback( () => particle_speed_trail.Play( true ) );
 		sequence.Append( transform.DOMove( position, duration ).SetEase( GameSettings.Instance.player_move_ease ) );
 		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );
@@ -253,7 +311,7 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
 		sequence.AppendCallback( event_level_failed.Raise );
 	}
-
+	
 	float GetVignette()
 	{
 		return notif_vignette_intensity.sharedValue;

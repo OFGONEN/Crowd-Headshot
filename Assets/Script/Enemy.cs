@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     [ SerializeField ] SharedVector3 shared_level_position_left;
     [ SerializeField ] SharedVector3 shared_level_position_right;
     [ SerializeField ] SharedFloatNotifier notif_player_power;
+    [ SerializeField ] Pool_PowerLoot pool_loot_power;
 
   [ Title( "Setup" ) ]
     [ SerializeField ] int enemy_power;
@@ -28,6 +29,7 @@ public class Enemy : MonoBehaviour
     [ SerializeField ] TextMeshProUGUI enemy_text_power;
     [ SerializeField ] Animator enemy_animator;
 	[ SerializeField ] Collider[] enemy_collider;
+	[ SerializeField ] Rigidbody[] enemy_rigidbody;
 
 	public bool IsBoss => enemy_is_boss;
 	public Vector3 TeleportPosition => enemy_gfx_transform.position;
@@ -52,6 +54,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
 		ToggleColliders( false );
+		ToggleRigidbodies( true );
 
 		enemy_position = transform.position;
 
@@ -86,6 +89,7 @@ public class Enemy : MonoBehaviour
 	public void OnLevelStart()
 	{
 		ToggleColliders( true );
+		ToggleRigidbodies( true );
 		OnPlayerPowerChange();
 	}
 
@@ -100,11 +104,15 @@ public class Enemy : MonoBehaviour
 	public void Die()
 	{
 		recycledSequence.Kill();
-		ToggleColliders( false );
+
+		enemy_animator.enabled = false;
 		enemy_text_power.gameObject.SetActive( false );
 
-		enemy_animator.SetTrigger( "die" );
+		ToggleColliders( false );
+		ToggleRigidbodies( false );
 
+		if( !enemy_is_boss )
+			pool_loot_power.Spawn( enemy_power, transform.position );
 	}
 #endregion
 
@@ -143,12 +151,24 @@ public class Enemy : MonoBehaviour
 	void ToggleColliders( bool value )
 	{
 		foreach( var collider in enemy_collider )
-			collider.enabled = value;
+			collider.isTrigger = value;
+	}
+
+	void ToggleRigidbodies( bool value )
+	{
+		foreach( var rigidbody in enemy_rigidbody )
+			rigidbody.isKinematic = value;
 	}
 #endregion
 
 #region Editor Only
 #if UNITY_EDITOR
+	[ Button() ]
+	public void CacheRigidbodyAndColliders()
+	{
+		enemy_collider  = GetComponentsInChildren< Collider >();
+		enemy_rigidbody = GetComponentsInChildren< Rigidbody >();
+	}
 #endif
 #endregion
 }
