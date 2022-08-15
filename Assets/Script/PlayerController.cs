@@ -117,6 +117,7 @@ public class PlayerController : MonoBehaviour
 			.SetEase( GameSettings.Instance.player_gun_change_shrink_ease )
 		);
 		sequence.AppendCallback( () => ChangeGunMesh( index ) );
+		sequence.AppendCallback( particle_gun_change.Play );
 		sequence.Append( player_gun_mesh.transform.DOPunchScale(
 			Vector3.one * GameSettings.Instance.player_gun_change_grow_scale,
 			GameSettings.Instance.player_gun_change_grow_duration )
