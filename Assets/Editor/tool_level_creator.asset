@@ -12,7 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 553a52971435644ff89e22571c715bc0, type: 3}
   m_Name: tool_level_creator
   m_EditorClassIdentifier: 
-  ground_count: 11.86
+  ground_count: 11
+  boss_offset: 0
+  boss_power: 0
   data_ground:
     ground_object: {fileID: 414754142227409116, guid: ce64d18f1f3228544a24f4e377297f43, type: 3}
     ground_length: 8
+  data_finishLine:
+    finishLine_object: {fileID: 414754142227409116, guid: ef89eb22c71e9d6469a44ef7a9e21bd8, type: 3}
+    finishLine_offset: 3
+  data_finalStage:
+    finalStage_object: {fileID: 9104046965334239103, guid: 7d582b766536bb944b78e006896dd8fa, type: 3}
+    finalStage_offset: 10
