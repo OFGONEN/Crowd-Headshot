@@ -7,6 +7,7 @@ using FFStudio;
 using TMPro;
 using DG.Tweening;
 using Sirenix.OdinInspector;
+using Shapes;
 
 public class Enemy : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
     [ SerializeField ] bool enemy_is_walking;
     [ SerializeField, ShowIf( "enemy_is_walking" ) ] bool enemy_walking_right;
     [ SerializeField, ShowIf( "enemy_is_walking" ) ] float enemy_walking_speed;
+    [ SerializeField, ShowIf( "enemy_is_walking" ) ] float enemy_walking_distance = 1f;
 
   [ Title( "Setup" ) ]
     [ SerializeField ] Transform enemy_gfx_transform;
@@ -134,13 +136,13 @@ public class Enemy : MonoBehaviour
     Vector3 ReturnTargetPosition_Right()
     {
 		returnTargetPosition = ReturnTargetPosition_Left;
-		return new Vector3( shared_level_position_right.sharedValue.x, 0, enemy_position.z );
+		return new Vector3( Mathf.Max( enemy_position.x - enemy_walking_distance, shared_level_position_left.sharedValue.x ), 0, enemy_position.z );
 	}
 
 	Vector3 ReturnTargetPosition_Left()
 	{
 		returnTargetPosition = ReturnTargetPosition_Right;
-		return new Vector3( shared_level_position_left.sharedValue.x, 0, enemy_position.z );
+		return new Vector3( Mathf.Min( enemy_position.x + enemy_walking_distance, shared_level_position_right.sharedValue.x ), 0, enemy_position.z );
 	}
 
     void EnemyGFXTurn()
@@ -175,6 +177,24 @@ public class Enemy : MonoBehaviour
 		enemy_power      = power;
 		enemy_is_walking = walking;
 		enemy_is_boss    = boss;
+	}
+
+	private void OnDrawGizmos()
+	{
+		if( Application.isPlaying ) return;
+
+		Draw.UseDashes = true;
+		Draw.DashStyle = DashStyle.RelativeDashes( DashType.Basic, 1, 1 );
+
+		var position = transform.position;
+		Draw.Line( position, position + Vector3.right * enemy_walking_distance, 0.1f, LineEndCap.None, Color.white );
+		Draw.Line( position, position - Vector3.right * enemy_walking_distance, 0.1f, LineEndCap.None, Color.white );
+
+		Draw.Disc( position + Vector3.right * enemy_walking_distance, Vector3.up, 0.02f, Color.green );
+		Draw.Disc( position - Vector3.right * enemy_walking_distance, Vector3.up, 0.02f, Color.green );
+
+		Draw.Ring( position + Vector3.right * enemy_walking_distance, Vector3.up, 0.2f, Color.green );
+		Draw.Ring( position - Vector3.right * enemy_walking_distance, Vector3.up, 0.2f, Color.green );
 	}
 #endif
 #endregion
