@@ -30,10 +30,10 @@ MonoBehaviour:
   player_move_ease: 1
   player_gun_change_default_scale: 2
   player_gun_change_shrink_scale: 0.35
-  player_gun_change_shrink_duration: 0.25
+  player_gun_change_shrink_duration: 0.4
   player_gun_change_shrink_ease: 1
   player_gun_change_grow_scale: 1.35
-  player_gun_change_grow_duration: 0.15
+  player_gun_change_grow_duration: 0.35
   player_gun_change_grow_ease: 1
   enemy_animation_turn_duration: 1
   enemy_power_color_strong: {r: 1, g: 0, b: 0, a: 1}
@@ -44,7 +44,7 @@ MonoBehaviour:
   loot_spawn_jump_power: 1
   loot_spawn_jump_duration: 0.3
   loot_spawn_jump_ease: 1
-  loot_spawn_travel_duration: 0.5
+  loot_spawn_travel_duration: 0.35
   loot_spawn_travel_ease: 1
   ui_crosshair_shoot_scale: 1.5
   ui_crosshair_shoot_rotation: 10
@@ -57,7 +57,7 @@ MonoBehaviour:
   game_vignette_value: 0.35
   game_vignette_duration: 0.65
   game_vignette_ease: 9
-  maxLevelCount: 1
+  maxLevelCount: 2
   useRemoteConfig_GameSettings: 0
   useRemoteConfig_Components: 0
   ui_Entity_Move_TweenDuration: 0.5

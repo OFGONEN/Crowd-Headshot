@@ -160,7 +160,7 @@ PlayerSettings:
     iPhone: com.FFStudios.CrowdHeadshot
   buildNumber:
     Standalone: 1
-    iPhone: 1
+    iPhone: 2
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 1

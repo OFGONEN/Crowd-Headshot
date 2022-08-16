@@ -59,7 +59,8 @@ public class PlayerController : MonoBehaviour
     {
 		// Set player power to 1
 		player_gun_index = 0;
-		notif_player_power.SetValue_NotifyAlways( 1 );
+
+		notif_player_power.SetValue_NotifyAlways( CurrentLevelData.Instance.levelData.player_power_level );
 		player_gun_mesh.mesh = CurrentLevelData.Instance.levelData.gun_data[ 0 ].gun_mesh;
 
 		EmptyDelegates();
