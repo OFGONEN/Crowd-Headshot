@@ -169,6 +169,13 @@ public class Enemy : MonoBehaviour
 		enemy_collider  = GetComponentsInChildren< Collider >();
 		enemy_rigidbody = GetComponentsInChildren< Rigidbody >();
 	}
+
+	public void SetEnemy( int power, bool walking = false, bool boss = false )
+	{
+		enemy_power      = power;
+		enemy_is_walking = walking;
+		enemy_is_boss    = boss;
+	}
 #endif
 #endregion
 }
