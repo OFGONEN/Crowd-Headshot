@@ -15,6 +15,7 @@ public class PowerLoot : MonoBehaviour
 	[ SerializeField ] SharedReferenceNotifier notif_player_transform;
     [ SerializeField ] Pool_PowerLoot pool_loot_power;
 
+	int loot_power;
 	float loot_travel_progression;
 	Vector3 player_position;
 	Vector3 loot_travel_position;
@@ -29,9 +30,11 @@ public class PowerLoot : MonoBehaviour
 #endregion
 
 #region API
-    public void Spawm( Vector3 spawnPoint )
+    public void Spawm( Vector3 spawnPoint, int power = 1 )
     {
 		gameObject.SetActive( true );
+
+		loot_power = power;
 
 		transform.position = spawnPoint;
 		loot_travel_position = spawnPoint + Random.insideUnitCircle.ConvertV3_Z() * GameSettings.Instance.loot_spawn_radius;
@@ -65,7 +68,7 @@ public class PowerLoot : MonoBehaviour
 
 	void OnProgressionComplete()
 	{
-		notif_player_power.SharedValue += 1;
+		notif_player_power.SharedValue += loot_power;
 		pool_loot_power.ReturnEntity( this );
 	}
 
