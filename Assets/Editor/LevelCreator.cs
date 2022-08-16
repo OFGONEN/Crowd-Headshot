@@ -11,13 +11,15 @@ using Sirenix.OdinInspector;
 [ CreateAssetMenu( fileName = "tool_level_creator", menuName = "FFEditor/Tool/Level Creator" ) ]
 public class LevelCreator : ScriptableObject
 {
+  [ Title( "Boss Setup" ) ]
+    [ SerializeField ] public int boss_power;
 
   [ Title( "Environment Setup" ) ]
     [ SerializeField ] public int ground_count;
     [ SerializeField ] public float boss_offset;
-    [ SerializeField ] public float boss_power;
 
   [ Title( "Data Setup" ) ]
+	[ SerializeField ] GameObject boss_object;
     [ SerializeField ] GroundData data_ground;
     [ SerializeField ] FinishLineData data_finishLine;
     [ SerializeField ] FinalStageData data_finalStage;
@@ -34,6 +36,7 @@ public class LevelCreator : ScriptableObject
 		for( i = 0; i < ground_count; i++ )
         {
 			var ground = PrefabUtility.InstantiatePrefab( data_ground.ground_object ) as GameObject;
+			ground.name = "ground_" + ( i + 1 );
 			ground.transform.SetParent( environmentParent );
 			ground.transform.localPosition = Vector3.forward * i * data_ground.ground_length;
 		}
@@ -47,6 +50,16 @@ public class LevelCreator : ScriptableObject
 		var finalStage = PrefabUtility.InstantiatePrefab( data_finalStage.finalStage_object ) as GameObject;
 		finalStage.transform.SetParent( environmentParent );
 		finalStage.transform.localPosition = Vector3.forward * ( i * data_ground.ground_length + data_finalStage.finalStage_offset + boss_offset );
+
+		GameObject.DestroyImmediate( GameObject.Find( "boss" ) ); // Destory Boss
+
+		var boss = PrefabUtility.InstantiatePrefab( boss_object ) as GameObject;
+		boss.name = "boss";
+		boss.transform.SetParent( null );
+		boss.transform.SetSiblingIndex( GameObject.Find( "player" ).transform.GetSiblingIndex() );
+		boss.transform.position = finalStage.transform.position;
+
+		boss.GetComponentInChildren< Enemy >().SetEnemy( boss_power, false, true );
 
 		AssetDatabase.SaveAssets();
 	}
