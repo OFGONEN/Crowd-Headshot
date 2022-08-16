@@ -19,7 +19,7 @@ MonoBehaviour:
   gun_data:
   - gun_power: 0
     gun_mesh: {fileID: -4249266557213123183, guid: 36f80e4af5dd9a041b047cdf1344c74d, type: 3}
-  - gun_power: 10
+  - gun_power: 5
     gun_mesh: {fileID: -8450688599883531210, guid: 972f6e9ae1f6c7044b3ad97f62697700, type: 3}
-  - gun_power: 25
+  - gun_power: 10
     gun_mesh: {fileID: -3267909169341205891, guid: a3a4d3b8021c87548bc476b13afd0059, type: 3}
