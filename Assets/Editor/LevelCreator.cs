@@ -4,7 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEditor.SceneManagement;
 using FFStudio;
 using Sirenix.OdinInspector;
 
@@ -29,7 +31,8 @@ public class LevelCreator : ScriptableObject
     {
 		var environmentParent = GameObject.Find( "environment" ).transform;
    
-		EditorUtility.SetDirty( environmentParent );
+		// EditorUtility.SetDirty( environmentParent );
+		EditorSceneManager.MarkAllScenesDirty();
 		environmentParent.DestoryAllChildren();
 
 		int i;
@@ -60,6 +63,27 @@ public class LevelCreator : ScriptableObject
 		boss.transform.position = finalStage.transform.position;
 
 		boss.GetComponentInChildren< Enemy >().SetEnemy( boss_power, false, true );
+
+		AssetDatabase.SaveAssets();
+	}
+
+	[ Button() ]
+	public void LineUpEnemies( int count, float offset )
+	{
+		EditorSceneManager.MarkAllScenesDirty();
+
+		var objects = SceneManager.GetActiveScene().GetRootGameObjects();
+
+		var selection = Selection.activeGameObject;
+
+		var startIndex = selection.transform.GetSiblingIndex();
+		var startPosition = selection.transform.position.z;
+
+		for( var i = 1; i <= count; i++ )
+		{
+			var sibling = objects[ startIndex + i ].transform;
+			sibling.position = sibling.position.SetZ( startPosition + i * offset );
+		}
 
 		AssetDatabase.SaveAssets();
 	}
