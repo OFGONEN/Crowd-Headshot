@@ -132,7 +132,7 @@ public class Enemy : MonoBehaviour
 		var gunData = CurrentLevelData.Instance.levelData.gun_data;
 
 		int i;
-		for( i = 0; i < gunData.Length; i++ )
+		for( i = gunData.Length - 1; i >= 0; i-- )
 		{
 			var gunPower = gunData[ i ].gun_power;
 			if( notif_player_power.sharedValue < gunPower &&  notif_player_power.sharedValue + enemy_power >= gunPower )
