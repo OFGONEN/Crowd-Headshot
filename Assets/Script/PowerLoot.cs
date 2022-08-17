@@ -49,6 +49,8 @@ public class PowerLoot : MonoBehaviour
 	public void GoTowardsPlayer()
 	{
 		player_position = ( notif_player_transform.sharedValue as Transform ).position;
+		player_position = player_position + Random.insideUnitCircle.ConvertV3() * GameSettings.Instance.loot_spawn_travel_random;
+
 		loot_travel_progression = 0;
 
 		recycledTween.Recycle( 
