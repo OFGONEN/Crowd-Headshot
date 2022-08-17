@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [ SerializeField ] SharedVector3 shared_level_position_left;
     [ SerializeField ] SharedVector3 shared_level_position_right;
     [ SerializeField ] SharedFloatNotifier notif_player_power;
+    [ SerializeField ] SharedReferenceNotifier notif_loot_weapon;
     [ SerializeField ] Pool_PowerLoot pool_loot_power;
 
   [ Title( "Setup" ) ]
@@ -104,7 +105,7 @@ public class Enemy : MonoBehaviour
 			enemy_text_power.color = GameSettings.Instance.enemy_power_color_strong;
 	}
 
-	public void Die()
+	public bool Die()
 	{
 		recycledSequence.Kill();
 
@@ -118,11 +119,32 @@ public class Enemy : MonoBehaviour
 		{
 			pool_loot_power.Spawn( enemy_power, transform.position );
 			event_power_up.Raise( enemy_power );
+			return DropWeaponLoot();
 		}
+		else
+			return false;
 	}
 #endregion
 
 #region Implementation
+	bool DropWeaponLoot()
+	{
+		var gunData = CurrentLevelData.Instance.levelData.gun_data;
+
+		int i;
+		for( i = 0; i < gunData.Length; i++ )
+		{
+			var gunPower = gunData[ i ].gun_power;
+			if( notif_player_power.sharedValue < gunPower &&  notif_player_power.sharedValue + enemy_power >= gunPower )
+			{
+				( notif_loot_weapon.sharedValue as WeaponLoot ).Spawm( transform.position, i );
+				return true;
+			}
+		}
+
+		return false;
+	}
+
     void CreateWalkingSequence()
     {
 		var targetPosition = returnTargetPosition();
