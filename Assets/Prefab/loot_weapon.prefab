@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a8b9286af946534c832e5352b9db9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedReferenceProperty: {fileID: 11400000, guid: 488e798dd6f140e4a84fa7485b885dd3, type: 2}
+  sharedReferenceProperty: {fileID: 11400000, guid: 2251a04a20a2a46adbc849a36e660af3, type: 2}
   referenceComponent: {fileID: 4582931261339062238}
 --- !u!1 &8791678193281733248
 GameObject:
@@ -115,8 +115,8 @@ MonoBehaviour:
     unityEvent:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
-          m_TargetAssemblyTypeName: PowerLoot, Assembly-CSharp
+        - m_Target: {fileID: 4582931261339062238}
+          m_TargetAssemblyTypeName: WeaponLoot, Assembly-CSharp
           m_MethodName: GoTowardsPlayer
           m_Mode: 1
           m_Arguments:
