@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
 {
 #region Fields
   [ Title( "Shared Variables" ) ]
+    [ SerializeField ] IntGameEvent event_power_up;
     [ SerializeField ] SharedVector3 shared_level_position_left;
     [ SerializeField ] SharedVector3 shared_level_position_right;
     [ SerializeField ] SharedFloatNotifier notif_player_power;
@@ -26,7 +27,7 @@ public class Enemy : MonoBehaviour
     [ SerializeField, ShowIf( "enemy_is_walking" ) ] float enemy_walking_speed;
     [ SerializeField, ShowIf( "enemy_is_walking" ) ] float enemy_walking_distance = 1f;
 
-  [ Title( "Setup" ) ]
+  [ Title( "Components" ) ]
     [ SerializeField ] Transform enemy_gfx_transform;
     [ SerializeField ] TextMeshProUGUI enemy_text_power;
     [ SerializeField ] Animator enemy_animator;
@@ -114,7 +115,10 @@ public class Enemy : MonoBehaviour
 		ToggleRigidbodies( false );
 
 		if( !enemy_is_boss )
+		{
 			pool_loot_power.Spawn( enemy_power, transform.position );
+			event_power_up.Raise( enemy_power );
+		}
 	}
 #endregion
 
