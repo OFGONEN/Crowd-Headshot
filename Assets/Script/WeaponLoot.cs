@@ -29,13 +29,15 @@ public class WeaponLoot : MonoBehaviour
 #endregion
 
 #region Unity API
+    private void Awake()
+    {
+		transform.position = Vector3.up * -100f;
+	}
 #endregion
 
 #region API
     public void Spawm( Vector3 spawnPoint, int gunIndex )
     {
-		gameObject.SetActive( true );
-
 		gun_index     = gunIndex;
 		loot_mesh.mesh = CurrentLevelData.Instance.levelData.gun_data[ gunIndex ].gun_mesh;
 
@@ -75,7 +77,7 @@ public class WeaponLoot : MonoBehaviour
 	void OnProgressionComplete()
 	{
 		event_gun_change.Raise( gun_index );
-		gameObject.SetActive( false );
+		transform.position = Vector3.up * -100f;
 	}
 
 	float ReturnProgression()
