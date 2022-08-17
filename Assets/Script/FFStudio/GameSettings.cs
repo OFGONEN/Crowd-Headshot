@@ -52,6 +52,7 @@ namespace FFStudio
         [ LabelText( "Loot Spawn Jump Power" ) ] public float loot_spawn_jump_power = 1f;
         [ LabelText( "Loot Spawn Jump Ease" ) ] public Ease loot_spawn_jump_ease;
         [ LabelText( "Loot Spawn Travel Duration" ) ] public float loot_spawn_travel_duration = 0.35f;
+        [ LabelText( "Loot Spawn Travel Delay Percentage" ) ] public float loot_spawn_travel_delay_percentage = 0.5f;
         [ LabelText( "Loot Spawn Travel Random" ) ] public float loot_spawn_travel_random = 0.35f;
         [ LabelText( "Loot Spawn Travel Ease" ) ] public Ease loot_spawn_travel_ease;
 

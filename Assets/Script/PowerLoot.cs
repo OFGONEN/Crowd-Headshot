@@ -53,11 +53,15 @@ public class PowerLoot : MonoBehaviour
 
 		loot_travel_progression = 0;
 
+		var delay = Random.Range( 0, GameSettings.Instance.loot_spawn_travel_duration * GameSettings.Instance.loot_spawn_travel_delay_percentage );
+		var duration = Random.Range( 0, GameSettings.Instance.loot_spawn_travel_duration - delay );
+
 		recycledTween.Recycle( 
 			DOTween.To( ReturnProgression, SetProgression, 1,
-				GameSettings.Instance.loot_spawn_travel_duration )
+				duration )
 				.OnUpdate( OnProgressionUpdate )
-				.SetEase( GameSettings.Instance.loot_spawn_travel_ease), 
+				.SetEase( GameSettings.Instance.loot_spawn_travel_ease )
+				.SetDelay( delay ), 
 				OnProgressionComplete );
 	}
 #endregion
