@@ -17,7 +17,7 @@ public class Pool_PowerLoot : ComponentPool< PowerLoot >
 		for( var i = 0; i < count; i++ )
 			GetEntity().Spawm( spawnPoint, divisor );
         
-		if( power < divisor || mod == 0 )
+		if( power < divisor || mod > 0 )
 			GetEntity().Spawm( spawnPoint, power );
 	}
 }
