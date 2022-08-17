@@ -90,9 +90,9 @@ public class PlayerController : MonoBehaviour
 		onFingerDrag( gameEvent.eventValue );
 	}
 
-	public void ChangeGun( int index )
+	public void ChangeGun( IntGameEvent gameEvent )
 	{
-		player_gun_index = index;
+		player_gun_index = gameEvent.eventValue;
 
 		var sequence = recycledSequence_GunChange.Recycle();
 
@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 			GameSettings.Instance.player_gun_change_shrink_duration )
 			.SetEase( GameSettings.Instance.player_gun_change_shrink_ease )
 		);
-		sequence.AppendCallback( () => ChangeGunMesh( index ) );
+		sequence.AppendCallback( () => ChangeGunMesh( player_gun_index ) );
 		sequence.AppendCallback( particle_gun_change.Play );
 		sequence.Append( player_gun_mesh.transform.DOPunchScale(
 			Vector3.one * GameSettings.Instance.player_gun_change_grow_scale,
