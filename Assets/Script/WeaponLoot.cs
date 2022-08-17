@@ -16,6 +16,7 @@ public class WeaponLoot : MonoBehaviour
 
   [ Title( "Components" ) ]
     [ SerializeField ] MeshFilter loot_mesh;
+	[ SerializeField ] Respond respond_scope_off;
 
 	int gun_index;
 	float loot_travel_progression;
@@ -32,6 +33,8 @@ public class WeaponLoot : MonoBehaviour
     private void Awake()
     {
 		transform.position = Vector3.up * -100f;
+
+		respond_scope_off.enabled = false;
 	}
 #endregion
 
@@ -40,6 +43,8 @@ public class WeaponLoot : MonoBehaviour
     {
 		gun_index     = gunIndex;
 		loot_mesh.mesh = CurrentLevelData.Instance.levelData.gun_data[ gunIndex ].gun_mesh;
+
+		respond_scope_off.enabled = true;
 
 		transform.position   = spawnPoint;
 		loot_travel_position = spawnPoint + Random.insideUnitCircle.ConvertV3_Z() * GameSettings.Instance.loot_spawn_radius;
@@ -53,6 +58,8 @@ public class WeaponLoot : MonoBehaviour
 
 	public void GoTowardsPlayer()
 	{
+		respond_scope_off.enabled = false;
+
 		player_position = ( notif_player_transform.sharedValue as Transform ).position;
 		player_position = player_position + Random.insideUnitCircle.ConvertV3() * GameSettings.Instance.loot_spawn_travel_random;
 

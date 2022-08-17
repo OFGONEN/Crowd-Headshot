@@ -50,6 +50,7 @@ MonoBehaviour:
   event_gun_change: {fileID: 11400000, guid: a2953ec27508b4301a6cf2c0522f7383, type: 2}
   notif_player_transform: {fileID: 11400000, guid: 488e798dd6f140e4a84fa7485b885dd3, type: 2}
   loot_mesh: {fileID: 1833431493180598085}
+  respond_scope_off: {fileID: 3899093684990071962}
 --- !u!114 &223093036920624281
 MonoBehaviour:
   m_ObjectHideFlags: 0
