@@ -22,7 +22,6 @@ public class UIPowerUpText : MonoBehaviour
     [ SerializeField ] TextMeshProUGUI text_power;
 
     RecycledSequence recycledSequence = new RecycledSequence();
-
     Vector3 position_start;
 #endregion
 
@@ -30,6 +29,11 @@ public class UIPowerUpText : MonoBehaviour
 #endregion
 
 #region Unity API
+    private void OnDisable()
+    {
+		recycledSequence.Kill();
+	}
+
     private void Start()
     {
 		position_start     = _rectTransform.position;
@@ -48,6 +52,7 @@ public class UIPowerUpText : MonoBehaviour
 
 		var sequence = recycledSequence.Recycle();
 
+		sequence.AppendInterval( GameSettings.Instance.ScopeDuration );
 		sequence.Append( _rectTransform.DOMove( parent_target.position, tween_duration ).SetEase( tween_movement_ease ) );
 		sequence.Join( text_power.DOFade( 0, tween_duration ).SetEase( tween_fade_ease ) );
 	}
