@@ -41,7 +41,7 @@ public class PowerLoot : MonoBehaviour
 
 		recycledTween.Recycle( transform.DOJump(
 			loot_travel_position, GameSettings.Instance.loot_spawn_jump_power, 1,
-			GameSettings.Instance.loot_spawn_jump_duration )
+			GameSettings.Instance.ScopeDuration )
 			.SetEase( GameSettings.Instance.loot_spawn_jump_ease )
 		);
 	}
