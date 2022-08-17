@@ -23,7 +23,7 @@ public class WeaponLoot : MonoBehaviour
 	Vector3 player_position;
 	Vector3 loot_travel_position;
 
-	RecycledTween recycledTween = new RecycledTween();
+	RecycledSequence recycledSequence = new RecycledSequence();
 #endregion
 
 #region Properties
@@ -46,14 +46,20 @@ public class WeaponLoot : MonoBehaviour
 
 		respond_scope_off.enabled = true;
 
-		transform.position   = spawnPoint;
-		loot_travel_position = spawnPoint + Random.insideUnitCircle.ConvertV3_Z() * GameSettings.Instance.loot_spawn_radius;
+		transform.position    = spawnPoint;
+		transform.eulerAngles = Vector3.zero;
+		loot_travel_position  = spawnPoint + Random.insideUnitCircle.ConvertV3_Z() * GameSettings.Instance.loot_spawn_radius;
 
-		recycledTween.Recycle( transform.DOJump(
+
+
+		var sequence = recycledSequence.Recycle();
+
+		sequence.Append( transform.DOJump(
 			loot_travel_position, GameSettings.Instance.loot_spawn_jump_power, 1,
 			GameSettings.Instance.ScopeDuration )
 			.SetEase( GameSettings.Instance.loot_spawn_jump_ease )
 		);
+		sequence.Join( transform.DORotate( Vector3.up * 90, GameSettings.Instance.ScopeDuration ).SetEase( GameSettings.Instance.loot_spawn_jump_ease ) );
 	}
 
 	public void GoTowardsPlayer()
@@ -65,20 +71,23 @@ public class WeaponLoot : MonoBehaviour
 
 		loot_travel_progression = 0;
 
-		recycledTween.Recycle( 
-			DOTween.To( ReturnProgression, SetProgression, 1,
+
+		var sequence = recycledSequence.Recycle( OnProgressionComplete );
+
+		sequence.AppendInterval( GameSettings.Instance.loot_spawn_travel_duration );
+		sequence.Append( DOTween.To( ReturnProgression, SetProgression, 1,
 				GameSettings.Instance.loot_spawn_travel_duration )
 				.OnUpdate( OnProgressionUpdate )
 				.SetEase( GameSettings.Instance.loot_spawn_travel_ease )
-				.SetDelay( GameSettings.Instance.loot_spawn_travel_duration ), 
-				OnProgressionComplete );
+		);
+		sequence.Join( transform.DORotate( Vector3.zero, GameSettings.Instance.loot_spawn_travel_duration ).SetEase( GameSettings.Instance.loot_spawn_travel_ease ) );
 	}
 #endregion
 
 #region Implementation
 	void OnProgressionUpdate()
 	{
-		transform.position = Vector3.Lerp( loot_travel_position, player_position, recycledTween.Tween.ElapsedPercentage() );
+		transform.position = Vector3.Lerp( loot_travel_position, player_position, recycledSequence.Sequence.ElapsedPercentage() );
 	}
 
 	void OnProgressionComplete()
