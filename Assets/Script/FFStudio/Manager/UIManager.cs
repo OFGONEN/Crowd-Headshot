@@ -27,6 +27,7 @@ namespace FFStudio
         public RectTransform tutorialObjects;
         public RectTransform parent_level_progress;
 		public RectTransform parent_tapToStart;
+		public Image parent_level_finished;
 
     [ Title( "UI Scope Elements" ) ]
         public GameObject parent_scope;
@@ -42,6 +43,10 @@ namespace FFStudio
         public GameEvent event_level_started;
         public ElephantLevelEvent elephantLevelEvent;
         public SharedBool shared_hit;
+
+    [ Title( "Resources" ) ]
+		public Sprite sprite_level_complete;
+		public Sprite sprite_level_failed;
     
     RecycledSequence recycledSequence = new RecycledSequence();
 #endregion
@@ -70,7 +75,8 @@ namespace FFStudio
             levelCompleteResponse.response = LevelCompleteResponse;
             tapInputListener.response      = ExtensionMethods.EmptyMethod;
 
-			level_information_text.text = "Tap to Start";
+			level_information_text.text = string.Empty;
+			parent_level_finished.gameObject.SetActive( false );
 		}
 #endregion
 
@@ -170,7 +176,10 @@ namespace FFStudio
 
 			// Tween tween = null;
 
-			level_information_text.text = "Completed \n\n Tap to Continue";
+			parent_level_finished.sprite = sprite_level_complete;
+			parent_level_finished.gameObject.SetActive( true );
+			
+			level_information_text.text = "Tap to Continue";
 
 			sequence.Append( foreGroundImage.DOFade( 0.5f, GameSettings.Instance.ui_Entity_Fade_TweenDuration ) )
 					// .Append( tween ) // TODO: UIElements tween.
@@ -187,7 +196,10 @@ namespace FFStudio
             var sequence = DOTween.Sequence();
 
 			// Tween tween = null;
-			level_information_text.text = "Try Again \n\n Tap to Continue";
+			parent_level_finished.sprite = sprite_level_failed;
+			parent_level_finished.gameObject.SetActive( true );
+
+			level_information_text.text = "Tap to Continue";
 
 			sequence.Append( foreGroundImage.DOFade( 0.5f, GameSettings.Instance.ui_Entity_Fade_TweenDuration ) )
                     // .Append( tween ) // TODO: UIElements tween.
@@ -230,6 +242,8 @@ namespace FFStudio
 
 		private void LoadNewLevel()
 		{
+			parent_level_finished.gameObject.SetActive( false );
+
 			tapInputListener.response = ExtensionMethods.EmptyMethod;
 
 			var sequence = DOTween.Sequence();
@@ -241,6 +255,8 @@ namespace FFStudio
 
 		private void Resetlevel()
 		{
+			parent_level_finished.gameObject.SetActive( false );
+
 			tapInputListener.response = ExtensionMethods.EmptyMethod;
 
 			var sequence = DOTween.Sequence();
