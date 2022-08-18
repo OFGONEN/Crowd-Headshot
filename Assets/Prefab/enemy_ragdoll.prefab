@@ -345,15 +345,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f2cbea2c36fb94a8b55a16a88dfa22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  event_power_up: {fileID: 11400000, guid: 11b7621c7636349c49a2b84f1592fc58, type: 2}
   shared_level_position_left: {fileID: 11400000, guid: 1cc197194609e4fc6bbb3cde299e704d, type: 2}
   shared_level_position_right: {fileID: 11400000, guid: 672c60e3478ec43d8822d457aa366c17, type: 2}
   notif_player_power: {fileID: 11400000, guid: caef4e6bb3b3c654bba9610596e9627c, type: 2}
+  notif_loot_weapon: {fileID: 11400000, guid: 2251a04a20a2a46adbc849a36e660af3, type: 2}
   pool_loot_power: {fileID: 11400000, guid: bb774d4bfddfde74b968e3bab8f46bc1, type: 2}
   enemy_power: 1
   enemy_is_boss: 0
   enemy_is_walking: 0
   enemy_walking_right: 0
   enemy_walking_speed: 0
+  enemy_walking_distance: 1
   enemy_gfx_transform: {fileID: 483637189297742152}
   enemy_text_power: {fileID: 3927787895003246368}
   enemy_animator: {fileID: 1663466506545021339}

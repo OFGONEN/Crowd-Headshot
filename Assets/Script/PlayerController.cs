@@ -90,25 +90,9 @@ public class PlayerController : MonoBehaviour
 		onFingerDrag( gameEvent.eventValue );
 	}
 
-	public void OnPlayerPowerChange( float value )
+	public void ChangeGun( IntGameEvent gameEvent )
 	{
-		var gunData = CurrentLevelData.Instance.levelData.gun_data;
-
-		for( var i = player_gun_index + 1; i < gunData.Length; i++ )
-		{
-			if( notif_player_power.sharedValue >= gunData[ i ].gun_power )
-			{
-				ChangeGun( i );
-				break;
-			}
-		}
-	}
-#endregion
-
-#region Implementation
-	void ChangeGun( int index )
-	{
-		player_gun_index = index;
+		player_gun_index = gameEvent.eventValue;
 
 		var sequence = recycledSequence_GunChange.Recycle();
 
@@ -117,7 +101,7 @@ public class PlayerController : MonoBehaviour
 			GameSettings.Instance.player_gun_change_shrink_duration )
 			.SetEase( GameSettings.Instance.player_gun_change_shrink_ease )
 		);
-		sequence.AppendCallback( () => ChangeGunMesh( index ) );
+		sequence.AppendCallback( () => ChangeGunMesh( player_gun_index ) );
 		sequence.AppendCallback( particle_gun_change.Play );
 		sequence.Append( player_gun_mesh.transform.DOPunchScale(
 			Vector3.one * GameSettings.Instance.player_gun_change_grow_scale,
@@ -125,7 +109,9 @@ public class PlayerController : MonoBehaviour
 			.SetEase( GameSettings.Instance.player_gun_change_grow_ease )
 		);
 	}
+#endregion
 
+#region Implementation
 	void ChangeGunMesh( int index )
 	{
 		// particle_gun_change.Play( true );
@@ -168,7 +154,7 @@ public class PlayerController : MonoBehaviour
 
 				if( notif_player_power.sharedValue >= enemyPower )
 				{
-					enemy.Die();
+					var weaponDropped = enemy.Die();
 
 					triggerListener.AttachedRigidbody.AddForce( 
 						( hitInfo.point - transform.position ).normalized * GameSettings.Instance.enemy_hit_force, 
@@ -199,7 +185,7 @@ public class PlayerController : MonoBehaviour
 					}
 					else
 					{
-						PlayerKilledEnemySequence( enemy.TeleportPosition.SetY( 0 ) );
+						PlayerKilledEnemySequence( enemy.TeleportPosition.SetY( 0 ), weaponDropped );
 					}
 				}
 				else
@@ -276,8 +262,15 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendInterval( GameSettings.Instance.player_aim_duration );
 	}
 
-	void PlayerKilledEnemySequence( Vector3 position )
+	void PlayerKilledEnemySequence( Vector3 position, bool weaponLoot )
 	{
+		float moveDelay = 0;
+
+		if( weaponLoot )
+			moveDelay = Mathf.Max( GameSettings.Instance.player_aim_duration, GameSettings.Instance.loot_spawn_travel_duration ) + GameSettings.Instance.loot_spawn_travel_duration;
+		else
+			moveDelay = Mathf.Max( GameSettings.Instance.player_aim_duration, GameSettings.Instance.loot_spawn_travel_duration );
+
 		var duration = Vector3.Distance( transform.position, position ) / GameSettings.Instance.player_move_speed;
 		var sequence = recycledSequence.Recycle( OnZoomedOut );
 		sequence.AppendCallback( event_scope_shoot.Raise );
@@ -286,7 +279,7 @@ public class PlayerController : MonoBehaviour
 		sequence.AppendInterval( notif_camera_zoom.CurrentDuration_ZoomOut() );
 		sequence.AppendCallback( event_scope_off.Raise );
 		sequence.AppendCallback( PlayerGunDown );
-		sequence.AppendInterval( Mathf.Max( GameSettings.Instance.player_aim_duration, GameSettings.Instance.loot_spawn_travel_duration ) );
+		sequence.AppendInterval( moveDelay );
 		sequence.AppendCallback( () => particle_speed_trail.Play( true ) );
 		sequence.Append( transform.DOMove( position, duration ).SetEase( GameSettings.Instance.player_move_ease ) );
 		sequence.AppendCallback( notif_camera_rotation.OnDefaultRotation );

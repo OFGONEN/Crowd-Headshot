@@ -15,6 +15,7 @@ public class PowerLoot : MonoBehaviour
 	[ SerializeField ] SharedReferenceNotifier notif_player_transform;
     [ SerializeField ] Pool_PowerLoot pool_loot_power;
 
+	int loot_power;
 	float loot_travel_progression;
 	Vector3 player_position;
 	Vector3 loot_travel_position;
@@ -29,16 +30,18 @@ public class PowerLoot : MonoBehaviour
 #endregion
 
 #region API
-    public void Spawm( Vector3 spawnPoint )
+    public void Spawm( Vector3 spawnPoint, int power = 1 )
     {
 		gameObject.SetActive( true );
+
+		loot_power = power;
 
 		transform.position = spawnPoint;
 		loot_travel_position = spawnPoint + Random.insideUnitCircle.ConvertV3_Z() * GameSettings.Instance.loot_spawn_radius;
 
 		recycledTween.Recycle( transform.DOJump(
 			loot_travel_position, GameSettings.Instance.loot_spawn_jump_power, 1,
-			GameSettings.Instance.loot_spawn_jump_duration )
+			GameSettings.Instance.ScopeDuration )
 			.SetEase( GameSettings.Instance.loot_spawn_jump_ease )
 		);
 	}
@@ -46,13 +49,19 @@ public class PowerLoot : MonoBehaviour
 	public void GoTowardsPlayer()
 	{
 		player_position = ( notif_player_transform.sharedValue as Transform ).position;
+		player_position = player_position + Random.insideUnitCircle.ConvertV3() * GameSettings.Instance.loot_spawn_travel_random;
+
 		loot_travel_progression = 0;
+
+		var delay = Random.Range( 0, GameSettings.Instance.loot_spawn_travel_duration * GameSettings.Instance.loot_spawn_travel_delay_percentage );
+		var duration = Random.Range( 0, GameSettings.Instance.loot_spawn_travel_duration - delay );
 
 		recycledTween.Recycle( 
 			DOTween.To( ReturnProgression, SetProgression, 1,
-				GameSettings.Instance.loot_spawn_travel_duration )
+				duration )
 				.OnUpdate( OnProgressionUpdate )
-				.SetEase( GameSettings.Instance.loot_spawn_travel_ease), 
+				.SetEase( GameSettings.Instance.loot_spawn_travel_ease )
+				.SetDelay( delay ), 
 				OnProgressionComplete );
 	}
 #endregion
@@ -65,7 +74,7 @@ public class PowerLoot : MonoBehaviour
 
 	void OnProgressionComplete()
 	{
-		notif_player_power.SharedValue += 1;
+		notif_player_power.SharedValue += loot_power;
 		pool_loot_power.ReturnEntity( this );
 	}
 
