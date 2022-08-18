@@ -58,7 +58,7 @@ MonoBehaviour:
   game_vignette_value: 0.35
   game_vignette_duration: 0.65
   game_vignette_ease: 9
-  maxLevelCount: 2
+  maxLevelCount: 5
   useRemoteConfig_GameSettings: 0
   useRemoteConfig_Components: 0
   ui_Entity_Move_TweenDuration: 0.5

@@ -15,7 +15,7 @@ MonoBehaviour:
   scene_index: 4
   scene_overrideAsActiveScene: 0
   player_power_level: 2
-  boss_power_level: 50
+  boss_power_level: 25
   enemy_power_divisor: 1
   gun_data:
   - gun_power: 0

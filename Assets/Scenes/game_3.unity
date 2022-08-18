@@ -1271,7 +1271,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3146913864776071863, guid: 0bc15a3127e797e4f893084d9bc6af4f, type: 3}
       propertyPath: enemy_power
-      value: 25
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3675566259615368455, guid: 0bc15a3127e797e4f893084d9bc6af4f, type: 3}
       propertyPath: m_Name
