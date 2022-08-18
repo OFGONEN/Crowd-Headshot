@@ -26,6 +26,7 @@ namespace FFStudio
         public Image foreGroundImage;
         public RectTransform tutorialObjects;
         public RectTransform parent_level_progress;
+		public RectTransform parent_tapToStart;
 
     [ Title( "UI Scope Elements" ) ]
         public GameObject parent_scope;
@@ -128,6 +129,8 @@ namespace FFStudio
 #region Implementation
         private void LevelLoadedResponse()
         {
+			level_information_text.text = string.Empty;
+
 			var sequence = DOTween.Sequence()
 								.Append( level_loadingBar_Scale.DoScale_Target( Vector3.zero, GameSettings.Instance.ui_Entity_Scale_TweenDuration ) )
 								.Append( loadingScreenImage.DOFade( 0, GameSettings.Instance.ui_Entity_Fade_TweenDuration ) )
@@ -142,8 +145,10 @@ namespace FFStudio
         private void NewLevelLoaded()
         {
 			level_count_text.text = "Level " + CurrentLevelData.Instance.currentLevel_Shown;
+			level_information_text.text = string.Empty;
 
-			level_information_text.text = "Tap to Start";
+			parent_tapToStart.gameObject.SetActive( true );
+			parent_tapToStart.localScale = Vector3.one;
 
 			var sequence = DOTween.Sequence();
 
@@ -151,7 +156,7 @@ namespace FFStudio
 
 			sequence.Append( foreGroundImage.DOFade( 0f, GameSettings.Instance.ui_Entity_Fade_TweenDuration ) )
 					// .Append( tween ) // TODO: UIElements tween.
-					.Append( level_information_text_Scale.DoScale_Start( GameSettings.Instance.ui_Entity_Scale_TweenDuration ) )
+					// .Append( level_information_text_Scale.DoScale_Start( GameSettings.Instance.ui_Entity_Scale_TweenDuration ) )
 					.AppendCallback( () => tapInputListener.response = StartLevel );
 
             // elephantLevelEvent.level             = CurrentLevelData.Instance.currentLevel_Shown;
@@ -200,12 +205,19 @@ namespace FFStudio
 		{
 			foreGroundImage.DOFade( 0, GameSettings.Instance.ui_Entity_Fade_TweenDuration );
 
-			level_information_text_Scale.DoScale_Target( Vector3.zero, GameSettings.Instance.ui_Entity_Scale_TweenDuration );
-			level_information_text_Scale.Subscribe_OnComplete( () => 
-            {
-				levelRevealedEvent.Raise();
-				event_level_started.Raise();
-			} );
+			// level_information_text_Scale.DoScale_Target( Vector3.zero, GameSettings.Instance.ui_Entity_Scale_TweenDuration );
+			// level_information_text_Scale.Subscribe_OnComplete( () => 
+			// {
+			// 	levelRevealedEvent.Raise();
+			// 	event_level_started.Raise();
+			// } );
+
+			parent_tapToStart.DOScale( 0, GameSettings.Instance.ui_Entity_Scale_TweenDuration )
+				.OnComplete( () =>
+				{
+					levelRevealedEvent.Raise();
+					event_level_started.Raise();
+				} );
 
 			tutorialObjects.gameObject.SetActive( false );
 
