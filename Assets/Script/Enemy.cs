@@ -207,7 +207,7 @@ public class Enemy : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
-		if( Application.isPlaying ) return;
+		if( Application.isPlaying || !enemy_is_walking ) return;
 
 		Draw.UseDashes = true;
 		Draw.DashStyle = DashStyle.RelativeDashes( DashType.Basic, 1, 1 );
