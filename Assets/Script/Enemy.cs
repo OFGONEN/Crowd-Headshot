@@ -156,6 +156,8 @@ public class Enemy : MonoBehaviour
 
 		sequence.Append( enemy_gfx_transform.DOMove( targetPosition, duration ).SetEase( Ease.Linear ) );
 		sequence.AppendCallback( EnemyGFXTurn );
+		sequence.Append( enemy_gfx_transform.DORotate( enemy_gfx_transform.eulerAngles * -1f , GameSettings.Instance.enemy_animation_turn_duration )
+			.SetEase( GameSettings.Instance.enemy_animation_turn_ease ) );
 		sequence.AppendInterval( GameSettings.Instance.enemy_animation_turn_duration );
 	}
 
