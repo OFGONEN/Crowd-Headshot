@@ -20,6 +20,8 @@ namespace FFStudio
 #region Unity API
 		void Start()
 		{
+			Application.targetFrameRate = Screen.currentResolution.refreshRate;
+
 			StartCoroutine( LoadLevel( null ) );
 		}
 #endregion
