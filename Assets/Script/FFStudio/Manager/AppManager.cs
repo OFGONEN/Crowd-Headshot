@@ -28,6 +28,8 @@ namespace FFStudio
 				eventSystem.SetActive( false );
 			}
 
+			Application.targetFrameRate = Screen.currentResolution.refreshRate;
+
 			StartCoroutine( LoadLevel( null ) );
 		}
 #endregion

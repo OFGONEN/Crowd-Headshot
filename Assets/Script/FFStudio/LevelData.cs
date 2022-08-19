@@ -14,6 +14,12 @@ namespace FFStudio
 	[ Title( "Setup" ) ]
 		[ ValueDropdown( "SceneList" ), LabelText( "Scene Index" ) ] public int scene_index;
         [ LabelText( "Override As Active Scene" ) ] public bool scene_overrideAsActiveScene;
+	[ Title( "Level Setup" ) ]
+        [ LabelText( "Player Power Level" ) ] public int player_power_level;
+        [ LabelText( "Boss Power Level" ) ] public int boss_power_level;
+        [ LabelText( "Enemy Power Drop Divisor" ) ] public int enemy_power_divisor = 1;
+	[ Title( "Gun Setup" ) ]
+		[ LabelText( "Gun Data" ) ] public GunData[] gun_data; 
 
 #if UNITY_EDITOR
 		static IEnumerable SceneList()

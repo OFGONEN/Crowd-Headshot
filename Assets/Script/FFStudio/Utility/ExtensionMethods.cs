@@ -82,6 +82,11 @@ namespace FFStudio
 			return new Vector3( v2.x, v2.y, 0 );
 		}
 
+		public static Vector3 ConvertV3_Z( this Vector2 v2 )
+		{
+			return new Vector3( v2.x, 0, v2.y );
+		}
+
 		public static Vector3 RandomPointBetween( this Vector3 first, Vector3 second )
 		{
 			return first + Random.Range( 0, 1f ) * ( second - first );
@@ -456,6 +461,11 @@ namespace FFStudio
 		public static float ReturnClamped( this Vector2 vector, float value )
 		{
 			return Mathf.Clamp( value, vector.x, vector.y );
+		}
+
+		public static Vector2 Invert( this Vector2 vector )
+		{
+			return new Vector2( vector.y, vector.x );
 		}
 	}
 }

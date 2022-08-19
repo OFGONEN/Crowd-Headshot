@@ -35,6 +35,7 @@ namespace FFStudio
 		public string alias;
 		public bool parent;
 		public Vector3 offset;
+		public Vector3 rotation;
 		public float size;
 	}
 
@@ -195,5 +196,19 @@ namespace FFStudio
 	{
 		public Color color;
 		[ SuffixLabel( "%" ) ] public NormalizedValue threshold;
+	}
+
+	[ Serializable ]
+	public struct AnimatorRandom_Integer
+	{
+		public string parameter_name;
+		public int parameter_max;
+	}
+
+	[ Serializable ]
+	public struct GunData
+	{
+		public float gun_power;
+		public Mesh gun_mesh;
 	}
 }

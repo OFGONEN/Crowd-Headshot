@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553a52971435644ff89e22571c715bc0, type: 3}
+  m_Name: tool_level_creator
+  m_EditorClassIdentifier: 
+  boss_power: 50
+  ground_count: 11
+  boss_offset: 8
+  boss_object: {fileID: 3675566259615368455, guid: 0bc15a3127e797e4f893084d9bc6af4f, type: 3}
+  data_ground:
+    ground_object: {fileID: 414754142227409116, guid: ce64d18f1f3228544a24f4e377297f43, type: 3}
+    ground_length: 8
+  data_finishLine:
+    finishLine_object: {fileID: 414754142227409116, guid: ef89eb22c71e9d6469a44ef7a9e21bd8, type: 3}
+    finishLine_offset: 3
+  data_finalStage:
+    finalStage_object: {fileID: 9104046965334239103, guid: 7d582b766536bb944b78e006896dd8fa, type: 3}
+    finalStage_offset: 10

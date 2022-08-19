@@ -8,5 +8,11 @@ namespace FFStudio
     public class Vector2GameEvent : GameEvent
     {
         public Vector2 eventValue;
+
+        public void Raise( Vector2 value )
+        {
+			eventValue = value;
+			Raise();
+		}
     }
 }

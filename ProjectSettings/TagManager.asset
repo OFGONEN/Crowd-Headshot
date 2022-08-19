@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - DebugOnly
+  - Enemy
+  - Boss
+  - Ground
+  - Body
+  - Head
   layers:
   - Default
   - TransparentFX
@@ -34,10 +39,10 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Ground
+  - Boss_Combat
+  - Enemy_Combat
+  - Player_Combat
   m_SortingLayers:
   - name: Default
     uniqueID: 0

@@ -35,6 +35,8 @@ namespace FFStudio
 			tween = tween.KillProper();
 			tween = tween_unsafe;
 
+			onComplete = null;
+
 			tween.OnComplete( OnComplete_Safe );
 
 #if UNITY_EDITOR

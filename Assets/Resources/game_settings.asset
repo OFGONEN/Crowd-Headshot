@@ -12,8 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a385bd3b4416492409284c9a366cb52a, type: 3}
   m_Name: game_settings
   m_EditorClassIdentifier: 
+  camera_zoom_in: 50
+  camera_zoom_out: 60
+  camera_zoom_speed: 60
+  camera_zoom_ease: 1
+  camera_rotation_speed: 6.75
+  camera_rotation_duration: 0.2
+  camera_rotation_clamp_horizontal: {x: -75, y: 75}
+  camera_rotation_clamp_vertical: {x: -30, y: 30}
+  camera_rotation_default: {x: 5, y: 0, z: 0}
   camera_follow_speed_depth: 2.8
-  maxLevelCount: 1
+  camera_shake_strenght: 15
+  camera_shake_duration: 0.35
+  player_shoot_maxDistance: 100
+  player_aim_duration: 0.1
+  player_move_speed: 100
+  player_move_ease: 1
+  player_gun_change_default_scale: 2
+  player_gun_change_shrink_scale: 0.35
+  player_gun_change_shrink_duration: 0.4
+  player_gun_change_shrink_ease: 1
+  player_gun_change_grow_scale: 1.35
+  player_gun_change_grow_duration: 0.35
+  player_gun_change_grow_ease: 1
+  enemy_animation_turn_duration: 0.75
+  enemy_animation_turn_ease: 1
+  enemy_power_color_strong: {r: 1, g: 0, b: 0, a: 1}
+  enemy_power_color_weak: {r: 0.034214735, g: 1, b: 0, a: 1}
+  enemy_particle_offset: 0.5
+  enemy_hit_force: 3
+  loot_spawn_radius: 1
+  loot_spawn_jump_power: 1
+  loot_spawn_jump_ease: 1
+  loot_spawn_travel_duration: 0.35
+  loot_spawn_travel_delay_percentage: 0.5
+  loot_spawn_travel_random: 0.35
+  loot_spawn_travel_ease: 1
+  ui_crosshair_shoot_scale: 1.5
+  ui_crosshair_shoot_rotation: 10
+  ui_crosshair_shoot_duration_on: 0.2
+  ui_crosshair_shoot_duration_off: 0.1
+  ui_crosshair_shoot_ease_on: 1
+  ui_crosshair_shoot_ease_off: 1
+  game_play_axis: {x: 0, y: 0, z: 1}
+  game_timeScale_headshot: 0.5
+  game_vignette_value: 0.35
+  game_vignette_duration: 0.65
+  game_vignette_ease: 9
+  maxLevelCount: 6
   useRemoteConfig_GameSettings: 0
   useRemoteConfig_Components: 0
   ui_Entity_Move_TweenDuration: 0.5

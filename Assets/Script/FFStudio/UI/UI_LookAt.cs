@@ -25,7 +25,7 @@ namespace FFStudio
 			updateMethod = ExtensionMethods.EmptyMethod;
 		}
 
-		void OnEnable()
+		void Start()
 		{
 			lookAt_Transform = lookAt_Reference.SharedValue as Transform;
 			updateMethod = LookAtTarget;

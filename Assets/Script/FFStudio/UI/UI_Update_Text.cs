@@ -20,6 +20,7 @@ namespace FFStudio
         void OnEnable()
         {
             sharedDataNotifier.Subscribe( OnSharedDataChange );
+            OnSharedDataChange();
         }
         
         void OnDisable()
@@ -30,7 +31,6 @@ namespace FFStudio
         void Awake()
         {
             ui_Text = GetComponentInChildren< TextMeshProUGUI >();
-            OnSharedDataChange();
         }
 #endregion
 
