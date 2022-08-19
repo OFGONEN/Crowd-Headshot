@@ -205,9 +205,22 @@ public class Enemy : MonoBehaviour
 		enemy_is_boss    = boss;
 	}
 
+	public void SetWalkingEnemy( int power, float walking_distance )
+	{
+		enemy_power            = power;
+		enemy_is_walking       = true;
+		enemy_is_boss          = false;
+		enemy_walking_distance = walking_distance;
+	}
+
+	private void OnValidate()
+	{
+		enemy_text_power.text = enemy_power.ToString();
+	}
+
 	private void OnDrawGizmos()
 	{
-		if( Application.isPlaying ) return;
+		if( Application.isPlaying || !enemy_is_walking ) return;
 
 		Draw.UseDashes = true;
 		Draw.DashStyle = DashStyle.RelativeDashes( DashType.Basic, 1, 1 );

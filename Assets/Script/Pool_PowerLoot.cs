@@ -18,6 +18,6 @@ public class Pool_PowerLoot : ComponentPool< PowerLoot >
 			GetEntity().Spawm( spawnPoint, divisor );
         
 		if( power < divisor || mod > 0 )
-			GetEntity().Spawm( spawnPoint, power );
+			GetEntity().Spawm( spawnPoint, mod );
 	}
 }

@@ -13,6 +13,8 @@ using Sirenix.OdinInspector;
 [ CreateAssetMenu( fileName = "tool_level_creator", menuName = "FFEditor/Tool/Level Creator" ) ]
 public class LevelCreator : ScriptableObject
 {
+    [ SerializeField ] int enemy_counter;
+
   [ Title( "Boss Setup" ) ]
     [ SerializeField ] public int boss_power;
 
@@ -22,6 +24,7 @@ public class LevelCreator : ScriptableObject
 
   [ Title( "Data Setup" ) ]
 	[ SerializeField ] GameObject boss_object;
+	[ SerializeField ] GameObject enemy_object;
     [ SerializeField ] GroundData data_ground;
     [ SerializeField ] FinishLineData data_finishLine;
     [ SerializeField ] FinalStageData data_finalStage;
@@ -84,6 +87,35 @@ public class LevelCreator : ScriptableObject
 			var sibling = objects[ startIndex + i ].transform;
 			sibling.position = sibling.position.SetZ( startPosition + i * offset );
 		}
+
+		AssetDatabase.SaveAssets();
+	}
+
+	[ Button() ]
+	public void PlaceIdleEnemy( float _x, float _z, int power )
+	{
+		EditorSceneManager.MarkAllScenesDirty();
+		var enemy = PrefabUtility.InstantiatePrefab( enemy_object ) as GameObject;
+		enemy.name = "enemy_ragdoll_" + enemy_counter++;
+		enemy.transform.SetParent( null );
+		enemy.transform.position = new Vector3( _x, 0, _z );
+
+		enemy.GetComponentInChildren< Enemy >().SetEnemy( power, false, false );	
+
+		AssetDatabase.SaveAssets();
+	}
+
+	[ Button() ]
+	public void PlaceWalkingEnemy( float _x, float _z, int power, float walking_distance )
+	{
+		EditorSceneManager.MarkAllScenesDirty();
+
+		var enemy = PrefabUtility.InstantiatePrefab( enemy_object ) as GameObject;
+		enemy.name = "enemy_ragdoll_" + enemy_counter++;
+		enemy.transform.SetParent( null );
+		enemy.transform.position = new Vector3( _x, 0, _z );
+
+		enemy.GetComponentInChildren< Enemy >().SetWalkingEnemy( power, walking_distance );
 
 		AssetDatabase.SaveAssets();
 	}
