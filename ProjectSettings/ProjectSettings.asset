@@ -155,15 +155,15 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.ffstudios.template
+    Android: com.FFStudios.CrowdHeadshot
     Standalone: com.FFStudios.Template
     iPhone: com.FFStudios.CrowdHeadshot
   buildNumber:
     Standalone: 1
-    iPhone: 4
+    iPhone: 5
     tvOS: 0
   overrideDefaultApplicationIdentifier: 1
-  AndroidBundleVersionCode: 1
+  AndroidBundleVersionCode: 5
   AndroidMinSdkVersion: 22
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 1
