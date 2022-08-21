@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scene_index: 5
   scene_overrideAsActiveScene: 0
-  player_power_level: 2
-  boss_power_level: 25
+  player_power_level: 5
+  boss_power_level: 81
   enemy_power_divisor: 1
   gun_data:
   - gun_power: 0
