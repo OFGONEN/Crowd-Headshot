@@ -144,7 +144,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 28
+      value: 29.05
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -173,6 +173,10 @@ PrefabInstance:
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927787895003246368, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
+      propertyPath: m_text
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_power
@@ -253,7 +257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_power
-      value: 5
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_is_walking
@@ -298,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4
+      value: 5.47
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -327,6 +331,10 @@ PrefabInstance:
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3927787895003246368, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
+      propertyPath: m_text
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_power
@@ -355,7 +363,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1
+      value: -1.24
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -363,7 +371,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6
+      value: 7.82
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -395,7 +403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_power
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_is_walking
@@ -490,7 +498,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.18
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -498,7 +506,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20
+      value: 19.794
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -530,7 +538,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_power
-      value: 10
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_is_walking
@@ -758,7 +766,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_power
-      value: 5
+      value: 55
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_is_walking
@@ -1007,7 +1015,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.35
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1270,7 +1278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_power
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_is_walking
@@ -1482,7 +1490,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3146913864776071863, guid: 0bc15a3127e797e4f893084d9bc6af4f, type: 3}
       propertyPath: enemy_power
-      value: 25
+      value: 81
       objectReference: {fileID: 0}
     - target: {fileID: 3675566259615368455, guid: 0bc15a3127e797e4f893084d9bc6af4f, type: 3}
       propertyPath: m_Name
@@ -1491,6 +1499,18 @@ PrefabInstance:
     - target: {fileID: 6171603640869550649, guid: 0bc15a3127e797e4f893084d9bc6af4f, type: 3}
       propertyPath: m_RootOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171603640869550649, guid: 0bc15a3127e797e4f893084d9bc6af4f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171603640869550649, guid: 0bc15a3127e797e4f893084d9bc6af4f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171603640869550649, guid: 0bc15a3127e797e4f893084d9bc6af4f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6171603640869550649, guid: 0bc15a3127e797e4f893084d9bc6af4f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1692,7 +1712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 2.09
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1732,7 +1752,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_power
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_is_walking
@@ -1951,7 +1971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1
+      value: 0.66
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1959,7 +1979,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14
+      value: 15.7
       objectReference: {fileID: 0}
     - target: {fileID: 3633329072060153696, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1991,7 +2011,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_power
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_is_walking
@@ -2214,7 +2234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_power
-      value: 5
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 5505026188420939758, guid: 63d6964187ad66e47887fec8564e35e0, type: 3}
       propertyPath: enemy_is_walking
