@@ -15,7 +15,8 @@ MonoBehaviour:
   scene_index: 1
   scene_overrideAsActiveScene: 0
   player_power_level: 1
-  boss_power_level: 10
+  boss_power_level: 50
+  enemy_power_divisor: 1
   gun_data:
   - gun_power: 0
     gun_mesh: {fileID: -4249266557213123183, guid: 36f80e4af5dd9a041b047cdf1344c74d, type: 3}

@@ -15,16 +15,16 @@ MonoBehaviour:
   scene_index: 6
   scene_overrideAsActiveScene: 0
   player_power_level: 10
-  boss_power_level: 4000
+  boss_power_level: 600
   enemy_power_divisor: 25
   gun_data:
   - gun_power: 0
     gun_mesh: {fileID: -4249266557213123183, guid: 36f80e4af5dd9a041b047cdf1344c74d, type: 3}
-  - gun_power: 70
+  - gun_power: 40
     gun_mesh: {fileID: -8450688599883531210, guid: 972f6e9ae1f6c7044b3ad97f62697700, type: 3}
-  - gun_power: 250
+  - gun_power: 120
     gun_mesh: {fileID: -3267909169341205891, guid: a3a4d3b8021c87548bc476b13afd0059, type: 3}
-  - gun_power: 450
+  - gun_power: 300
     gun_mesh: {fileID: 4106691986641640505, guid: 094ee81b80250614c8600b0621d029b4, type: 3}
-  - gun_power: 850
+  - gun_power: 650
     gun_mesh: {fileID: 3349307152370203488, guid: fa2bb7f759838254aa64b60b260c0cf0, type: 3}
