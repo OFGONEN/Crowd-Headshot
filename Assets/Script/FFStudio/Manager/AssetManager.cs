@@ -2,6 +2,7 @@
 
 using UnityEngine;
 using UnityEngine.Events;
+using DG.Tweening;
 using Sirenix.OdinInspector;
 
 namespace FFStudio
@@ -38,6 +39,8 @@ namespace FFStudio
 			pool_UIPopUpText.InitPool( transform, false );
 			pool_loot_power.InitPool( transform, false );
 			onAwakeEvent.Invoke();
+
+			DOTween.SetTweensCapacity( 500, 125 );
 		}
 
 		void Start()
